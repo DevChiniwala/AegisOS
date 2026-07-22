@@ -1,0 +1,176 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 520" fill="none">
+  <defs>
+    <linearGradient id="ts-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0e1a"/>
+      <stop offset="100%" style="stop-color:#111827"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1100" height="520" fill="url(#ts-bg)"/>
+
+  <text x="550" y="35" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#f8fafc" text-anchor="middle">Technology Stack</text>
+
+  <!-- ═══════ BACKEND ═══════ -->
+  <rect x="30" y="55" width="340" height="210" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="200" y="78" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#60a5fa" text-anchor="middle">Backend &amp; API</text>
+
+  <rect x="45" y="90" width="100" height="30" rx="6" fill="#1e3a5f"/>
+  <text x="95" y="109" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#93c5fd" text-anchor="middle">Python 3.11+</text>
+  <rect x="155" y="90" width="90" height="30" rx="6" fill="#1e3a5f"/>
+  <text x="200" y="109" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#93c5fd" text-anchor="middle">FastAPI</text>
+  <rect x="255" y="90" width="100" height="30" rx="6" fill="#1e3a5f"/>
+  <text x="305" y="109" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#93c5fd" text-anchor="middle">Pydantic v2</text>
+
+  <rect x="45" y="128" width="110" height="30" rx="6" fill="#1e3a5f"/>
+  <text x="100" y="147" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#93c5fd" text-anchor="middle">SQLAlchemy 2.0</text>
+  <rect x="165" y="128" width="80" height="30" rx="6" fill="#1e3a5f"/>
+  <text x="205" y="147" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#93c5fd" text-anchor="middle">Alembic</text>
+  <rect x="255" y="128" width="100" height="30" rx="6" fill="#1e3a5f"/>
+  <text x="305" y="147" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#93c5fd" text-anchor="middle">Celery</text>
+
+  <rect x="45" y="166" width="90" height="30" rx="6" fill="#1e3a5f"/>
+  <text x="90" y="185" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#93c5fd" text-anchor="middle">WebSocket</text>
+  <rect x="145" y="166" width="100" height="30" rx="6" fill="#1e3a5f"/>
+  <text x="195" y="185" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#93c5fd" text-anchor="middle">Redis Streams</text>
+  <rect x="255" y="166" width="100" height="30" rx="6" fill="#1e3a5f"/>
+  <text x="305" y="185" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#93c5fd" text-anchor="middle">asyncpg</text>
+
+  <rect x="45" y="204" width="80" height="30" rx="6" fill="#1e3a5f"/>
+  <text x="85" y="223" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#93c5fd" text-anchor="middle">YAML</text>
+  <rect x="135" y="204" width="110" height="30" rx="6" fill="#1e3a5f"/>
+  <text x="190" y="223" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#93c5fd" text-anchor="middle">JWT / OAuth2</text>
+  <rect x="255" y="204" width="100" height="30" rx="6" fill="#1e3a5f"/>
+  <text x="305" y="223" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#93c5fd" text-anchor="middle">pytest</text>
+
+  <!-- ═══════ ML / AI ═══════ -->
+  <rect x="385" y="55" width="340" height="210" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="555" y="78" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#f87171" text-anchor="middle">Machine Learning &amp; AI</text>
+
+  <rect x="400" y="90" width="95" height="30" rx="6" fill="#3b1010"/>
+  <text x="447" y="109" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#fca5a5" text-anchor="middle">XGBoost</text>
+  <rect x="505" y="90" width="95" height="30" rx="6" fill="#3b1010"/>
+  <text x="552" y="109" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#fca5a5" text-anchor="middle">LightGBM</text>
+  <rect x="610" y="90" width="95" height="30" rx="6" fill="#3b1010"/>
+  <text x="657" y="109" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#fca5a5" text-anchor="middle">CatBoost</text>
+
+  <rect x="400" y="128" width="110" height="30" rx="6" fill="#3b1010"/>
+  <text x="455" y="147" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#fca5a5" text-anchor="middle">IsolationForest</text>
+  <rect x="520" y="128" width="100" height="30" rx="6" fill="#3b1010"/>
+  <text x="570" y="147" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#fca5a5" text-anchor="middle">Autoencoder</text>
+  <rect x="630" y="128" width="80" height="30" rx="6" fill="#3b1010"/>
+  <text x="670" y="147" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#fca5a5" text-anchor="middle">SHAP</text>
+
+  <rect x="400" y="166" width="100" height="30" rx="6" fill="#3b1010"/>
+  <text x="450" y="185" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#fca5a5" text-anchor="middle">NetworkX</text>
+  <rect x="510" y="166" width="95" height="30" rx="6" fill="#3b1010"/>
+  <text x="557" y="185" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#fca5a5" text-anchor="middle">scikit-learn</text>
+  <rect x="615" y="166" width="95" height="30" rx="6" fill="#3b1010"/>
+  <text x="662" y="185" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#fca5a5" text-anchor="middle">NumPy</text>
+
+  <rect x="400" y="204" width="120" height="30" rx="6" fill="#3b1010"/>
+  <text x="460" y="223" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#fca5a5" text-anchor="middle">Platt Scaling</text>
+  <rect x="530" y="204" width="100" height="30" rx="6" fill="#3b1010"/>
+  <text x="580" y="223" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#fca5a5" text-anchor="middle">Louvain</text>
+  <rect x="640" y="204" width="70" height="30" rx="6" fill="#3b1010"/>
+  <text x="675" y="223" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#fca5a5" text-anchor="middle">joblib</text>
+
+  <!-- ═══════ FRONTEND ═══════ -->
+  <rect x="740" y="55" width="330" height="210" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="905" y="78" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#34d399" text-anchor="middle">Frontend Dashboard</text>
+
+  <rect x="755" y="90" width="100" height="30" rx="6" fill="#064e3b"/>
+  <text x="805" y="109" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#6ee7b7" text-anchor="middle">Next.js 14</text>
+  <rect x="865" y="90" width="95" height="30" rx="6" fill="#064e3b"/>
+  <text x="912" y="109" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#6ee7b7" text-anchor="middle">TypeScript 5</text>
+  <rect x="970" y="90" width="85" height="30" rx="6" fill="#064e3b"/>
+  <text x="1012" y="109" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#6ee7b7" text-anchor="middle">React 18</text>
+
+  <rect x="755" y="128" width="105" height="30" rx="6" fill="#064e3b"/>
+  <text x="807" y="147" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#6ee7b7" text-anchor="middle">TailwindCSS</text>
+  <rect x="870" y="128" width="90" height="30" rx="6" fill="#064e3b"/>
+  <text x="915" y="147" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#6ee7b7" text-anchor="middle">shadcn/ui</text>
+  <rect x="970" y="128" width="85" height="30" rx="6" fill="#064e3b"/>
+  <text x="1012" y="147" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#6ee7b7" text-anchor="middle">Recharts</text>
+
+  <rect x="755" y="166" width="100" height="30" rx="6" fill="#064e3b"/>
+  <text x="805" y="185" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#6ee7b7" text-anchor="middle">React Flow</text>
+  <rect x="865" y="166" width="115" height="30" rx="6" fill="#064e3b"/>
+  <text x="922" y="185" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#6ee7b7" text-anchor="middle">TanStack Query</text>
+  <rect x="990" y="166" width="65" height="30" rx="6" fill="#064e3b"/>
+  <text x="1022" y="185" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#6ee7b7" text-anchor="middle">Zustand</text>
+
+  <rect x="755" y="204" width="110" height="30" rx="6" fill="#064e3b"/>
+  <text x="810" y="223" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#6ee7b7" text-anchor="middle">Framer Motion</text>
+  <rect x="875" y="204" width="75" height="30" rx="6" fill="#064e3b"/>
+  <text x="912" y="223" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#6ee7b7" text-anchor="middle">Axios</text>
+  <rect x="960" y="204" width="95" height="30" rx="6" fill="#064e3b"/>
+  <text x="1007" y="223" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#6ee7b7" text-anchor="middle">next-themes</text>
+
+  <!-- ═══════ DATABASES ═══════ -->
+  <rect x="30" y="285" width="520" height="100" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="290" y="308" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#a78bfa" text-anchor="middle">Data Stores</text>
+
+  <rect x="45" y="320" width="110" height="50" rx="8" fill="#2e1065"/>
+  <text x="100" y="341" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#c4b5fd" text-anchor="middle">PostgreSQL 16</text>
+  <text x="100" y="357" font-family="system-ui, sans-serif" font-size="7" fill="#8b5cf6" text-anchor="middle">Relational + JSONB</text>
+
+  <rect x="165" y="320" width="95" height="50" rx="8" fill="#2e1065"/>
+  <text x="212" y="341" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#c4b5fd" text-anchor="middle">Neo4j 5</text>
+  <text x="212" y="357" font-family="system-ui, sans-serif" font-size="7" fill="#8b5cf6" text-anchor="middle">Graph + GDS</text>
+
+  <rect x="270" y="320" width="90" height="50" rx="8" fill="#2e1065"/>
+  <text x="315" y="341" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#c4b5fd" text-anchor="middle">Redis 7</text>
+  <text x="315" y="357" font-family="system-ui, sans-serif" font-size="7" fill="#8b5cf6" text-anchor="middle">Cache + Streams</text>
+
+  <rect x="370" y="320" width="85" height="50" rx="8" fill="#2e1065"/>
+  <text x="412" y="341" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#c4b5fd" text-anchor="middle">Qdrant</text>
+  <text x="412" y="357" font-family="system-ui, sans-serif" font-size="7" fill="#8b5cf6" text-anchor="middle">Vector DB</text>
+
+  <rect x="465" y="320" width="75" height="50" rx="8" fill="#2e1065"/>
+  <text x="502" y="341" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#c4b5fd" text-anchor="middle">MinIO</text>
+  <text x="502" y="357" font-family="system-ui, sans-serif" font-size="7" fill="#8b5cf6" text-anchor="middle">Object Store</text>
+
+  <!-- ═══════ INFRASTRUCTURE ═══════ -->
+  <rect x="565" y="285" width="505" height="100" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="817" y="308" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#fbbf24" text-anchor="middle">Infrastructure &amp; DevOps</text>
+
+  <rect x="580" y="320" width="110" height="50" rx="8" fill="#422006"/>
+  <text x="635" y="341" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#fcd34d" text-anchor="middle">Docker</text>
+  <text x="635" y="357" font-family="system-ui, sans-serif" font-size="7" fill="#f59e0b" text-anchor="middle">Multi-stage builds</text>
+
+  <rect x="700" y="320" width="100" height="50" rx="8" fill="#422006"/>
+  <text x="750" y="341" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#fcd34d" text-anchor="middle">Kubernetes</text>
+  <text x="750" y="357" font-family="system-ui, sans-serif" font-size="7" fill="#f59e0b" text-anchor="middle">Helm charts</text>
+
+  <rect x="810" y="320" width="100" height="50" rx="8" fill="#422006"/>
+  <text x="860" y="341" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#fcd34d" text-anchor="middle">Terraform</text>
+  <text x="860" y="357" font-family="system-ui, sans-serif" font-size="7" fill="#f59e0b" text-anchor="middle">Cloud IaC</text>
+
+  <rect x="920" y="320" width="135" height="50" rx="8" fill="#422006"/>
+  <text x="987" y="341" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#fcd34d" text-anchor="middle">GitHub Actions</text>
+  <text x="987" y="357" font-family="system-ui, sans-serif" font-size="7" fill="#f59e0b" text-anchor="middle">CI/CD Pipeline</text>
+
+  <!-- ═══════ METRICS ═══════ -->
+  <rect x="30" y="405" width="1040" height="90" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="550" y="428" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#f8fafc" text-anchor="middle">Key Metrics</text>
+
+  <rect x="60" y="440" width="180" height="40" rx="8" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+  <text x="150" y="458" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#6ee7b7" text-anchor="middle">&lt;20ms</text>
+  <text x="150" y="473" font-family="system-ui, sans-serif" font-size="8" fill="#64748b" text-anchor="middle">Fast-path rule latency</text>
+
+  <rect x="260" y="440" width="180" height="40" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1"/>
+  <text x="350" y="458" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#93c5fd" text-anchor="middle">&lt;50ms</text>
+  <text x="350" y="473" font-family="system-ui, sans-serif" font-size="8" fill="#64748b" text-anchor="middle">ML ensemble scoring</text>
+
+  <rect x="460" y="440" width="180" height="40" rx="8" fill="#1e293b" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="550" y="458" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#c4b5fd" text-anchor="middle">9 Agents</text>
+  <text x="550" y="473" font-family="system-ui, sans-serif" font-size="8" fill="#64748b" text-anchor="middle">Autonomous investigators</text>
+
+  <rect x="660" y="440" width="180" height="40" rx="8" fill="#1e293b" stroke="#ef4444" stroke-width="1"/>
+  <text x="750" y="458" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#fca5a5" text-anchor="middle">60+ Features</text>
+  <text x="750" y="473" font-family="system-ui, sans-serif" font-size="8" fill="#64748b" text-anchor="middle">Real-time extraction</text>
+
+  <rect x="860" y="440" width="180" height="40" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
+  <text x="950" y="458" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#fcd34d" text-anchor="middle">5 Databases</text>
+  <text x="950" y="473" font-family="system-ui, sans-serif" font-size="8" fill="#64748b" text-anchor="middle">Polyglot persistence</text>
+</svg>

@@ -1,0 +1,251 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0e1a;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#111827;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#6d28d9;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#d97706;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#dc2626;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#0891b2;stop-opacity:1"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="800" fill="url(#bgGrad)"/>
+  <rect width="1200" height="800" fill="none" stroke="#1e293b" stroke-width="1" opacity="0.5"/>
+
+  <!-- Grid pattern -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5" opacity="0.3"/>
+  </pattern>
+  <rect width="1200" height="800" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="600" y="45" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="700" fill="#f8fafc" text-anchor="middle">AegisOS — System Architecture</text>
+  <text x="600" y="68" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">Event-Driven Microservices with Multi-Agent AI Intelligence</text>
+
+  <!-- ═══════ LAYER 1: CLIENT LAYER ═══════ -->
+  <rect x="40" y="90" width="1120" height="90" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1" filter="url(#shadow)"/>
+  <text x="60" y="110" font-family="system-ui, sans-serif" font-size="10" fill="#64748b" font-weight="600" letter-spacing="1.5">CLIENT LAYER</text>
+
+  <!-- Dashboard -->
+  <rect x="80" y="120" width="200" height="45" rx="8" fill="url(#blueGrad)" filter="url(#glow)"/>
+  <text x="180" y="140" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#fff" text-anchor="middle">Next.js Dashboard</text>
+  <text x="180" y="155" font-family="system-ui, sans-serif" font-size="9" fill="#bfdbfe" text-anchor="middle">React + TailwindCSS + shadcn/ui</text>
+
+  <!-- WebSocket -->
+  <rect x="320" y="120" width="180" height="45" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="410" y="140" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#93c5fd" text-anchor="middle">WebSocket Streams</text>
+  <text x="410" y="155" font-family="system-ui, sans-serif" font-size="9" fill="#64748b" text-anchor="middle">Real-time Alerts &amp; Feed</text>
+
+  <!-- REST API -->
+  <rect x="540" y="120" width="180" height="45" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="630" y="140" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#93c5fd" text-anchor="middle">REST API (v1)</text>
+  <text x="630" y="155" font-family="system-ui, sans-serif" font-size="9" fill="#64748b" text-anchor="middle">OpenAPI 3.0 + JWT Auth</text>
+
+  <!-- External Systems -->
+  <rect x="760" y="120" width="180" height="45" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="850" y="140" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#fcd34d" text-anchor="middle">External Integrations</text>
+  <text x="850" y="155" font-family="system-ui, sans-serif" font-size="9" fill="#64748b" text-anchor="middle">Banks • PSPs • Regulators</text>
+
+  <!-- Graph Viz -->
+  <rect x="980" y="120" width="150" height="45" rx="8" fill="#1e293b" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="1055" y="140" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#c4b5fd" text-anchor="middle">Graph Explorer</text>
+  <text x="1055" y="155" font-family="system-ui, sans-serif" font-size="9" fill="#64748b" text-anchor="middle">React Flow Canvas</text>
+
+  <!-- ═══════ LAYER 2: API GATEWAY ═══════ -->
+  <rect x="40" y="200" width="1120" height="75" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1" filter="url(#shadow)"/>
+  <text x="60" y="220" font-family="system-ui, sans-serif" font-size="10" fill="#64748b" font-weight="600" letter-spacing="1.5">API GATEWAY</text>
+
+  <rect x="80" y="232" width="140" height="32" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+  <text x="150" y="252" font-family="system-ui, sans-serif" font-size="10" fill="#6ee7b7" text-anchor="middle">Rate Limiting</text>
+
+  <rect x="240" y="232" width="140" height="32" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+  <text x="310" y="252" font-family="system-ui, sans-serif" font-size="10" fill="#6ee7b7" text-anchor="middle">JWT Auth</text>
+
+  <rect x="400" y="232" width="140" height="32" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+  <text x="470" y="252" font-family="system-ui, sans-serif" font-size="10" fill="#6ee7b7" text-anchor="middle">Request Tracing</text>
+
+  <rect x="560" y="232" width="140" height="32" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+  <text x="630" y="252" font-family="system-ui, sans-serif" font-size="10" fill="#6ee7b7" text-anchor="middle">Audit Logging</text>
+
+  <rect x="720" y="232" width="160" height="32" rx="6" fill="url(#greenGrad)"/>
+  <text x="800" y="252" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#fff" text-anchor="middle">FastAPI + Pydantic v2</text>
+
+  <rect x="900" y="232" width="230" height="32" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+  <text x="1015" y="252" font-family="system-ui, sans-serif" font-size="10" fill="#6ee7b7" text-anchor="middle">CORS • Timing • Error Handling</text>
+
+  <!-- ═══════ LAYER 3: INTELLIGENCE CORE ═══════ -->
+  <rect x="40" y="295" width="1120" height="240" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1" filter="url(#shadow)"/>
+  <text x="60" y="318" font-family="system-ui, sans-serif" font-size="10" fill="#64748b" font-weight="600" letter-spacing="1.5">INTELLIGENCE CORE</text>
+
+  <!-- Feature Engine -->
+  <rect x="60" y="330" width="220" height="90" rx="10" fill="#1e293b" stroke="#06b6d4" stroke-width="1.5"/>
+  <text x="170" y="352" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#67e8f9" text-anchor="middle">Feature Engine</text>
+  <text x="170" y="370" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">Transaction • Device • Temporal</text>
+  <text x="170" y="385" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">Behavioral • Graph Features</text>
+  <text x="170" y="405" font-family="monospace" font-size="8" fill="#06b6d4" text-anchor="middle">&lt;5ms extraction latency</text>
+
+  <!-- Risk Engine -->
+  <rect x="300" y="330" width="240" height="90" rx="10" fill="#1e293b" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="420" y="352" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#fca5a5" text-anchor="middle">Risk Scoring Engine</text>
+  <text x="420" y="370" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">YAML Rule Engine (Fast-Path)</text>
+  <text x="420" y="385" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">Adaptive Ensemble + SHAP Weighting</text>
+  <text x="420" y="405" font-family="monospace" font-size="8" fill="#ef4444" text-anchor="middle">Platt-calibrated probabilities</text>
+
+  <!-- Graph Engine -->
+  <rect x="560" y="330" width="220" height="90" rx="10" fill="#1e293b" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="670" y="352" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#c4b5fd" text-anchor="middle">Graph Intelligence</text>
+  <text x="670" y="370" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">Fraud Ring Detection (Louvain)</text>
+  <text x="670" y="385" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">Risk Propagation • Path Analysis</text>
+  <text x="670" y="405" font-family="monospace" font-size="8" fill="#8b5cf6" text-anchor="middle">NetworkX + Neo4j dual-store</text>
+
+  <!-- Behavioral AI -->
+  <rect x="800" y="330" width="220" height="90" rx="10" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="910" y="352" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#fcd34d" text-anchor="middle">Behavioral AI</text>
+  <text x="910" y="370" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">User Profiling • Anomaly Detection</text>
+  <text x="910" y="385" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">Temporal Patterns • Device Habits</text>
+  <text x="910" y="405" font-family="monospace" font-size="8" fill="#f59e0b" text-anchor="middle">Continual learning per-entity</text>
+
+  <!-- Multi-Agent System -->
+  <rect x="60" y="435" width="480" height="85" rx="10" fill="#1e293b" stroke="#ec4899" stroke-width="2"/>
+  <text x="300" y="458" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#f9a8d4" text-anchor="middle">Multi-Agent Investigation System</text>
+  <text x="300" y="478" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">9 Specialized AI Agents with Orchestrator</text>
+  <!-- Agent boxes -->
+  <rect x="75" y="488" width="65" height="22" rx="4" fill="#831843"/>
+  <text x="107" y="503" font-family="system-ui, sans-serif" font-size="7" fill="#fda4af" text-anchor="middle">Tx Analyst</text>
+  <rect x="148" y="488" width="65" height="22" rx="4" fill="#831843"/>
+  <text x="180" y="503" font-family="system-ui, sans-serif" font-size="7" fill="#fda4af" text-anchor="middle">Graph Det.</text>
+  <rect x="221" y="488" width="65" height="22" rx="4" fill="#831843"/>
+  <text x="253" y="503" font-family="system-ui, sans-serif" font-size="7" fill="#fda4af" text-anchor="middle">Behavior</text>
+  <rect x="294" y="488" width="65" height="22" rx="4" fill="#831843"/>
+  <text x="326" y="503" font-family="system-ui, sans-serif" font-size="7" fill="#fda4af" text-anchor="middle">Evidence</text>
+  <rect x="367" y="488" width="65" height="22" rx="4" fill="#831843"/>
+  <text x="399" y="503" font-family="system-ui, sans-serif" font-size="7" fill="#fda4af" text-anchor="middle">Risk Assess</text>
+  <rect x="440" y="488" width="82" height="22" rx="4" fill="#831843"/>
+  <text x="481" y="503" font-family="system-ui, sans-serif" font-size="7" fill="#fda4af" text-anchor="middle">Compliance</text>
+
+  <!-- Explainability -->
+  <rect x="560" y="435" width="220" height="85" rx="10" fill="#1e293b" stroke="#14b8a6" stroke-width="1.5"/>
+  <text x="670" y="458" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#5eead4" text-anchor="middle">Explainability (XAI)</text>
+  <text x="670" y="478" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">SHAP • Counterfactuals</text>
+  <text x="670" y="493" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">Natural Language Narratives</text>
+  <text x="670" y="508" font-family="monospace" font-size="8" fill="#14b8a6" text-anchor="middle">Audit-ready explanations</text>
+
+  <!-- Memory Engine -->
+  <rect x="800" y="435" width="220" height="85" rx="10" fill="#1e293b" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="910" y="458" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#c4b5fd" text-anchor="middle">Memory Engine</text>
+  <text x="910" y="478" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">Vector Store (Qdrant)</text>
+  <text x="910" y="493" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">Knowledge Graph • Case History</text>
+  <text x="910" y="508" font-family="monospace" font-size="8" fill="#a78bfa" text-anchor="middle">Similarity search + patterns</text>
+
+  <!-- ═══════ LAYER 4: ML MODELS ═══════ -->
+  <rect x="40" y="555" width="540" height="80" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1" filter="url(#shadow)"/>
+  <text x="60" y="575" font-family="system-ui, sans-serif" font-size="10" fill="#64748b" font-weight="600" letter-spacing="1.5">ML ENSEMBLE</text>
+
+  <rect x="60" y="585" width="95" height="38" rx="6" fill="url(#redGrad)"/>
+  <text x="107" y="608" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#fff" text-anchor="middle">XGBoost</text>
+
+  <rect x="165" y="585" width="95" height="38" rx="6" fill="url(#orangeGrad)"/>
+  <text x="212" y="608" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#fff" text-anchor="middle">LightGBM</text>
+
+  <rect x="270" y="585" width="95" height="38" rx="6" fill="url(#purpleGrad)"/>
+  <text x="317" y="608" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#fff" text-anchor="middle">CatBoost</text>
+
+  <rect x="375" y="585" width="95" height="38" rx="6" fill="url(#cyanGrad)"/>
+  <text x="422" y="608" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#fff" text-anchor="middle">IsoForest</text>
+
+  <rect x="480" y="585" width="85" height="38" rx="6" fill="#1e293b" stroke="#f472b6" stroke-width="1"/>
+  <text x="522" y="608" font-family="system-ui, sans-serif" font-size="9" fill="#f9a8d4" text-anchor="middle">Autoenc.</text>
+
+  <!-- ═══════ LAYER 4: DATA STORES ═══════ -->
+  <rect x="600" y="555" width="560" height="80" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1" filter="url(#shadow)"/>
+  <text x="620" y="575" font-family="system-ui, sans-serif" font-size="10" fill="#64748b" font-weight="600" letter-spacing="1.5">DATA LAYER</text>
+
+  <rect x="620" y="585" width="95" height="38" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="667" y="602" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#93c5fd" text-anchor="middle">PostgreSQL</text>
+  <text x="667" y="615" font-family="system-ui, sans-serif" font-size="7" fill="#64748b" text-anchor="middle">Relational</text>
+
+  <rect x="725" y="585" width="85" height="38" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
+  <text x="767" y="602" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#6ee7b7" text-anchor="middle">Neo4j</text>
+  <text x="767" y="615" font-family="system-ui, sans-serif" font-size="7" fill="#64748b" text-anchor="middle">Graph</text>
+
+  <rect x="820" y="585" width="85" height="38" rx="6" fill="#1e293b" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="862" y="602" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#fca5a5" text-anchor="middle">Redis</text>
+  <text x="862" y="615" font-family="system-ui, sans-serif" font-size="7" fill="#64748b" text-anchor="middle">Cache/Stream</text>
+
+  <rect x="915" y="585" width="85" height="38" rx="6" fill="#1e293b" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="957" y="602" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#c4b5fd" text-anchor="middle">Qdrant</text>
+  <text x="957" y="615" font-family="system-ui, sans-serif" font-size="7" fill="#64748b" text-anchor="middle">Vector</text>
+
+  <rect x="1010" y="585" width="85" height="38" rx="6" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="1052" y="602" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#fcd34d" text-anchor="middle">MinIO</text>
+  <text x="1052" y="615" font-family="system-ui, sans-serif" font-size="7" fill="#64748b" text-anchor="middle">Object</text>
+
+  <rect x="1105" y="585" width="40" height="38" rx="6" fill="#1e293b" stroke="#f97316" stroke-width="1.5"/>
+  <text x="1125" y="608" font-family="system-ui, sans-serif" font-size="8" font-weight="600" fill="#fb923c" text-anchor="middle">MQ</text>
+
+  <!-- ═══════ LAYER 5: INFRASTRUCTURE ═══════ -->
+  <rect x="40" y="655" width="1120" height="65" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1" filter="url(#shadow)"/>
+  <text x="60" y="675" font-family="system-ui, sans-serif" font-size="10" fill="#64748b" font-weight="600" letter-spacing="1.5">INFRASTRUCTURE</text>
+
+  <rect x="80" y="688" width="130" height="22" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+  <text x="145" y="703" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">Docker Compose</text>
+
+  <rect x="225" y="688" width="130" height="22" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+  <text x="290" y="703" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">Kubernetes (Helm)</text>
+
+  <rect x="370" y="688" width="130" height="22" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+  <text x="435" y="703" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">Terraform (IaC)</text>
+
+  <rect x="515" y="688" width="130" height="22" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+  <text x="580" y="703" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">Prometheus + Grafana</text>
+
+  <rect x="660" y="688" width="120" height="22" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+  <text x="720" y="703" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">Celery Workers</text>
+
+  <rect x="795" y="688" width="130" height="22" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+  <text x="860" y="703" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">Alembic Migrations</text>
+
+  <rect x="940" y="688" width="180" height="22" rx="4" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+  <text x="1030" y="703" font-family="system-ui, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">CI/CD (GitHub Actions)</text>
+
+  <!-- Connection arrows (simplified) -->
+  <line x1="180" y1="165" x2="180" y2="200" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+  <line x1="410" y1="165" x2="410" y2="200" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+  <line x1="630" y1="165" x2="630" y2="200" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+  <line x1="600" y1="275" x2="600" y2="295" stroke="#10b981" stroke-width="2" opacity="0.7"/>
+  <line x1="170" y1="420" x2="170" y2="435" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+  <line x1="420" y1="420" x2="420" y2="435" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+  <line x1="670" y1="420" x2="670" y2="435" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+
+  <!-- Footer -->
+  <text x="600" y="780" font-family="system-ui, sans-serif" font-size="10" fill="#475569" text-anchor="middle">AegisOS v1.0 — Built with Python, FastAPI, Next.js, NetworkX, Neo4j, and SHAP</text>
+</svg>
