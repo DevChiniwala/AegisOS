@@ -1,3 +1,4 @@
+import logging
 import joblib
 from typing import Dict, List, Any
 
@@ -5,6 +6,13 @@ try:
     import lightgbm as lgb
 except ImportError:
     lgb = None
+
+try:
+    import shap
+except ImportError:
+    shap = None
+
+logger = logging.getLogger(__name__)
 
 class LightGBMFraudModel:
     def __init__(self):
@@ -39,8 +47,21 @@ class LightGBMFraudModel:
         return self.model.predict_proba(X)[:, 1].tolist()
         
     def explain(self, features: Dict[str, float]) -> Dict[str, float]:
-        return {}
-        
+        if not self.model or not shap:
+            return {}
+        try:
+            import numpy as np
+            feature_names = list(features.keys())
+            X = np.array([list(features.values())])
+            explainer = shap.TreeExplainer(self.model)
+            shap_values = explainer.shap_values(X)
+            if isinstance(shap_values, list):
+                shap_values = shap_values[1]
+            return dict(zip(feature_names, shap_values[0].tolist()))
+        except Exception as e:
+            logger.warning(f"SHAP explanation failed: {e}")
+            return {}
+
     def train(self, X: Any, y: Any, **kwargs):
         if self.model:
             self.model.fit(X, y)
