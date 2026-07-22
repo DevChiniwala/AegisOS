@@ -24,7 +24,11 @@ dependencies = [
     "httpx",
     "celery[redis]",
     "redis",
-    "aioredis"
+    "aioredis",
+    "pyyaml",
+    "networkx",
+    "python-louvain",
+    "numpy"
 ]
 
 [project.optional-dependencies]
