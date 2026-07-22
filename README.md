@@ -45,8 +45,8 @@ The easiest way to run the full AegisOS stack locally is using Docker Compose.
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/aegisos/aegisos.git
-    cd aegisos
+    git clone https://github.com/DevChiniwala/AegisOS.git
+    cd AegisOS
     ```
 
 2.  **Start the infrastructure:**
@@ -79,6 +79,42 @@ To develop locally without Docker (or pointing to local Docker services):
     ```bash
     make dev
     ```
+
+4.  **Run the dashboard:**
+    ```bash
+    cd apps/dashboard
+    npm install
+    npm run dev
+    ```
+
+5.  **Run tests:**
+    ```bash
+    make test
+    ```
+
+## Project Structure
+
+```
+AegisOS/
+├── apps/
+│   ├── api/            # FastAPI application (routes, middleware, dependencies)
+│   └── dashboard/      # Next.js 14 frontend (TypeScript, TailwindCSS, shadcn/ui)
+├── core/               # Shared core (config, schemas, events, database, utils)
+├── models/             # ML models (XGBoost, LightGBM, CatBoost, ensemble)
+├── services/
+│   ├── agents/         # Multi-agent investigation system (9 specialized agents)
+│   ├── behavioral_ai/  # User behavior profiling
+│   ├── compliance/     # AML/KYC/SAR compliance engine
+│   ├── explainability/ # SHAP, counterfactual reasoning
+│   ├── feature_engine/ # Real-time feature extraction
+│   ├── graph_engine/   # NetworkX/Neo4j graph intelligence
+│   ├── memory/         # Vector memory + knowledge graph
+│   ├── notification/   # Alert dispatch
+│   └── risk_engine/    # Rule engine + adaptive ensemble scoring
+├── infrastructure/     # Docker, Kubernetes, Terraform configs
+├── tests/              # Unit and integration tests
+└── docker-compose.yml  # Full development stack (7 services)
+```
 
 ## Documentation
 
