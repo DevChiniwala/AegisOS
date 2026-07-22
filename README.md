@@ -6,7 +6,7 @@
   <a href="#quickstart"><img src="https://img.shields.io/badge/Quick_Start-blue?style=for-the-badge&logo=rocket&logoColor=white" alt="Quick Start"/></a>
   <a href="#architecture"><img src="https://img.shields.io/badge/Architecture-purple?style=for-the-badge&logo=blueprint&logoColor=white" alt="Architecture"/></a>
   <a href="#features"><img src="https://img.shields.io/badge/Features-green?style=for-the-badge&logo=sparkles&logoColor=white" alt="Features"/></a>
-  <a href="https://github.com/DevChiniwala/AegisOS/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="License"/></a>
+  <a href="https://github.com/DevChiniwala/AegisOS/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-Apache_2.0-yellow?style=for-the-badge" alt="License"/></a>
 </p>
 
 <p align="center">
@@ -692,7 +692,7 @@ See `/research/` for architecture decision records and paper references.
 
 ## License
 
-MIT License. See [LICENSE](LICENSE) for details.
+Apache License 2.0. See [LICENSE](LICENSE) for details.
 
 ---
 
