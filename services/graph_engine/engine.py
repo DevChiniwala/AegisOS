@@ -2,8 +2,11 @@ from typing import List, Dict, Any
 from core.schemas.transaction import TransactionCreate
 from core.utils.helpers import generate_id
 from core.utils.logging import get_logger
-from .store import GraphStore
+from .store import GraphStore, NetworkXGraphStore
 from .schema import GraphNode, GraphEdge, NodeType, EdgeType
+from .algorithms.community_detection import CommunityDetector
+from .algorithms.risk_propagation import RiskPropagator
+from .algorithms.path_analysis import PathAnalyzer
 import uuid
 
 logger = get_logger(__name__)
@@ -11,6 +14,9 @@ logger = get_logger(__name__)
 class GraphIntelligenceEngine:
     def __init__(self, store: GraphStore):
         self.store = store
+        self._community_detector = CommunityDetector()
+        self._risk_propagator = RiskPropagator()
+        self._path_analyzer = PathAnalyzer()
 
     async def add_transaction_to_graph(self, transaction: TransactionCreate) -> None:
         # Create Nodes
@@ -54,18 +60,35 @@ class GraphIntelligenceEngine:
     async def get_entity_subgraph(self, entity_id: str, depth: int = 2) -> Dict[str, Any]:
         return await self.store.query_subgraph(entity_id, depth)
 
+    def _get_nx_graph(self):
+        if isinstance(self.store, NetworkXGraphStore):
+            return self.store._graph
+        return None
+
     async def detect_fraud_rings(self, min_size: int = 3) -> List[List[str]]:
-        # This would typically use networkx locally on a snapshot, or graph algos plugin in Neo4j.
-        # Implemented in algorithms module.
-        pass
+        graph = self._get_nx_graph()
+        if graph is None:
+            logger.warning("Fraud ring detection requires NetworkX store")
+            return []
+        communities = self._community_detector.find_suspicious_communities(graph, min_size=min_size)
+        return [list(c) for c in communities]
 
     async def compute_risk_propagation(self, entity_id: str) -> float:
-        # Placeholder for propagation logic implemented in algorithms.risk_propagation
-        return 0.5
+        graph = self._get_nx_graph()
+        if graph is None:
+            return 0.0
+        node = await self.store.get_node(entity_id)
+        if not node:
+            return 0.0
+        seed_scores = {entity_id: node.risk_score if hasattr(node, 'risk_score') else 0.0}
+        propagated = self._risk_propagator.propagate(graph, seed_scores)
+        return propagated.get(entity_id, 0.0)
 
     async def find_money_flow_path(self, source_id: str, target_id: str) -> List[str]:
-        # Implemented in algorithms module
-        return [source_id, target_id]
+        graph = self._get_nx_graph()
+        if graph is None:
+            return []
+        return self._path_analyzer.shortest_path(graph, source_id, target_id)
 
     async def get_entity_risk_score(self, entity_id: str) -> float:
         node = await self.store.get_node(entity_id)
