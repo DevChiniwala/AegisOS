@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from typing import List
 from core.schemas.transaction import TransactionCreate
 from core.schemas.entity import UserProfile
-from core.schemas.investigation import InvestigationCase
+from core.schemas.investigation import InvestigationCase, CaseStatus, CasePriority
 
 @dataclass
 class ComplianceResult:
@@ -47,11 +47,10 @@ class ComplianceEngine:
         return PEPResult(is_pep=False, role="")
 
     def should_file_sar(self, case: InvestigationCase) -> bool:
-        # SAR filing criteria
-        return case.priority == "HIGH" and case.status == "CLOSED_FRAUD"
+        return case.priority == CasePriority.HIGH and case.status == CaseStatus.CLOSED and case.verdict == "FRAUD"
 
     def generate_sar_report(self, case: InvestigationCase) -> str:
-        return f"Suspicious Activity Report for Case {case.id}\nPriority: {case.priority}\nDetails: Found suspicious behavior."
+        return f"Suspicious Activity Report for Case {case.case_id}\nPriority: {case.priority}\nDetails: Found suspicious behavior."
 
     def get_regulatory_requirements(self, transaction: TransactionCreate) -> List[str]:
         reqs = ["KYC", "AML"]
