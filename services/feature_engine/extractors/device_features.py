@@ -1,6 +1,11 @@
+import hashlib
 from typing import Dict
 from core.schemas.transaction import TransactionCreate
 from services.feature_engine.extractors.base import ExtractionContext
+
+
+def _stable_encode(value: str) -> float:
+    return int(hashlib.md5(value.encode()).hexdigest(), 16) % 10000 / 10000.0
 
 class DeviceFeatureExtractor:
     def extract(self, transaction: TransactionCreate, context: ExtractionContext) -> Dict[str, float]:
@@ -18,10 +23,10 @@ class DeviceFeatureExtractor:
             features['is_rooted'] = 1.0 if getattr(context.device, 'is_rooted', False) else 0.0
             
             device_type = getattr(context.device, 'device_type', '')
-            features['device_type_encoding'] = hash(device_type) % 100 / 100.0
-            
+            features['device_type_encoding'] = _stable_encode(device_type)
+
             os = getattr(context.device, 'os', '')
-            features['os_encoding'] = hash(os) % 100 / 100.0
+            features['os_encoding'] = _stable_encode(os)
             
         else:
             features['is_new_device'] = 1.0

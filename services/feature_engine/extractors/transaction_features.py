@@ -1,7 +1,12 @@
 import math
+import hashlib
 from typing import Dict
 from core.schemas.transaction import TransactionCreate, TransactionType
 from services.feature_engine.extractors.base import ExtractionContext
+
+
+def _stable_encode(value: str) -> float:
+    return int(hashlib.md5(value.encode()).hexdigest(), 16) % 10000 / 10000.0
 
 class TransactionFeatureExtractor:
     def extract(self, transaction: TransactionCreate, context: ExtractionContext) -> Dict[str, float]:
@@ -34,9 +39,9 @@ class TransactionFeatureExtractor:
         features['currency_is_foreign'] = is_foreign
 
         channel = transaction.channel.value if hasattr(transaction.channel, 'value') else str(transaction.channel)
-        features['channel_encoding'] = hash(channel) % 100 / 100.0
-        
+        features['channel_encoding'] = _stable_encode(channel)
+
         tx_type = transaction.type.value if hasattr(transaction.type, 'value') else str(transaction.type)
-        features['transaction_type_encoding'] = hash(tx_type) % 100 / 100.0
+        features['transaction_type_encoding'] = _stable_encode(tx_type)
         
         return features
