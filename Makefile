@@ -7,7 +7,7 @@ install-all:
 	pip install -e ".[all]"
 
 dev:
-	uvicorn core.main:app --reload
+	uvicorn apps.api.main:app --reload
 
 test: test-unit test-integration
 
