@@ -1,0 +1,71 @@
+name: AegisOS CI/CD
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+  pull_request:
+    branches: [ "main", "develop" ]
+
+env:
+  PYTHON_VERSION: "3.11"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    services:
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+          
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python ${{ env.PYTHON_VERSION }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        cache: 'pip'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install ".[all]"
+        
+    - name: Type checking (mypy)
+      run: |
+        mypy core services apps models
+        
+    - name: Linting (ruff)
+      run: |
+        ruff check .
+        
+    - name: Run unit tests
+      run: |
+        pytest tests/unit -v
+        
+    - name: Run integration tests
+      env:
+        AEGIS_REDIS_URL: redis://localhost:6379/0
+      run: |
+        pytest tests/integration -v
+
+  build-docker:
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Build API image
+      run: docker build -t aegisos/api:latest -f infrastructure/docker/Dockerfile.api .
+      
+    - name: Build Worker image
+      run: docker build -t aegisos/worker:latest -f infrastructure/docker/Dockerfile.worker .

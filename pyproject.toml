@@ -1,0 +1,77 @@
+[project]
+name = "aegisos"
+version = "0.1.0"
+description = "AegisOS - The Autonomous AI Operating System for Financial Intelligence"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic>=2.0",
+    "pydantic-settings",
+    "sqlalchemy[asyncio]",
+    "alembic",
+    "structlog",
+    "python-jose[cryptography]",
+    "passlib[bcrypt]",
+    "httpx",
+    "celery[redis]",
+    "redis",
+    "aioredis"
+]
+
+[project.optional-dependencies]
+ml = [
+    "xgboost",
+    "lightgbm",
+    "catboost",
+    "scikit-learn",
+    "shap",
+    "torch",
+    "numpy",
+    "pandas"
+]
+graph = [
+    "networkx",
+    "torch-geometric",
+    "neo4j"
+]
+agents = [
+    "openai",
+    "anthropic",
+    "langchain-core",
+    "tiktoken",
+    "faiss-cpu"
+]
+all = [
+    "xgboost",
+    "lightgbm",
+    "catboost",
+    "scikit-learn",
+    "shap",
+    "torch",
+    "numpy",
+    "pandas",
+    "networkx",
+    "torch-geometric",
+    "neo4j",
+    "openai",
+    "anthropic",
+    "langchain-core",
+    "tiktoken",
+    "faiss-cpu"
+]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = [
+    "tests",
+]
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I"]
+
+[tool.mypy]
+strict = true
+ignore_missing_imports = true

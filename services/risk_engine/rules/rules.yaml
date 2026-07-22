@@ -1,0 +1,41 @@
+rules:
+  - name: amount_limit
+    action: BLOCK
+    condition: features.get('is_large_amount', 0.0) == 1.0 or features.get('amount_log', 0) > 10.8
+    reason: Transaction amount exceeds absolute limit
+  - name: velocity_1min
+    action: FLAG
+    condition: features.get('transactions_last_1min', 0.0) > 5.0
+    reason: Too many transactions in 1 minute
+  - name: velocity_1hour
+    action: FLAG
+    condition: features.get('transactions_last_1hour', 0.0) > 30.0
+    reason: Too many transactions in 1 hour
+  - name: impossible_travel
+    action: BLOCK
+    condition: features.get('is_impossible_travel', 0.0) == 1.0
+    reason: Impossible travel speed detected
+  - name: new_device_high_amount
+    action: FLAG
+    condition: features.get('is_new_device', 0.0) == 1.0 and features.get('amount_log', 0) > 6.9
+    reason: High amount on new device
+  - name: night_large_transaction
+    action: FLAG
+    condition: features.get('is_night', 0.0) == 1.0 and features.get('amount_log', 0) > 8.5
+    reason: Large transaction during night hours
+  - name: high_risk_country
+    action: FLAG
+    condition: features.get('country_risk_score', 0.0) > 0.8
+    reason: Transaction involving high risk country
+  - name: round_amount_pattern
+    action: FLAG
+    condition: features.get('is_round_amount', 0.0) == 1.0 and features.get('count_5m', 0.0) > 2
+    reason: Repeated round amounts
+  - name: emulator_detected
+    action: BLOCK
+    condition: features.get('is_emulator', 0.0) == 1.0
+    reason: Device emulator detected
+  - name: multiple_countries
+    action: FLAG
+    condition: features.get('unique_countries_24h', 0.0) > 3.0
+    reason: Multiple unique countries in 24 hours
