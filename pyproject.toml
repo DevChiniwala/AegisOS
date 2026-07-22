@@ -1,3 +1,11 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["core*", "apps*", "models*", "services*"]
+exclude = ["tests*", "datasets*", "infrastructure*", "docs*"]
+
 [project]
 name = "aegisos"
 version = "0.1.0"
