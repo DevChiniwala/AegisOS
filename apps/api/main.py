@@ -23,10 +23,27 @@ class AegisError(Exception):
 async def lifespan(app: FastAPI):
     """Lifespan context manager for startup and shutdown events."""
     logger.info("Starting AegisOS API...")
-    # Initialize services here
+
+    from core.events import get_event_bus, shutdown_event_bus
+    from apps.api.dependencies import (
+        get_feature_engine, get_risk_engine, get_graph_engine,
+        get_behavioral_engine, get_investigation_orchestrator,
+        get_memory_engine, get_explainability_engine,
+    )
+
+    app.state.event_bus = await get_event_bus()
+    app.state.feature_engine = get_feature_engine()
+    app.state.risk_engine = get_risk_engine()
+    app.state.graph_engine = get_graph_engine()
+    app.state.behavioral_engine = get_behavioral_engine()
+    app.state.orchestrator = get_investigation_orchestrator()
+    app.state.memory_engine = get_memory_engine()
+    app.state.explainability_engine = get_explainability_engine()
+
+    logger.info("All engines initialized successfully")
     yield
     logger.info("Shutting down AegisOS API...")
-    # Cleanup here
+    await shutdown_event_bus()
 
 app = FastAPI(
     title="AegisOS API",
