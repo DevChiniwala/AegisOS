@@ -1,0 +1,82 @@
+import { CaseStatus, CasePriority, type InvestigationCase } from "@/types/investigation";
+
+export const mockCases: InvestigationCase[] = [
+  {
+    case_id: "CASE-2026-0847",
+    transaction_ids: ["txn_a1b2c3d4", "txn_g3h4i5j6"],
+    entity_ids: ["usr_8d2f1"],
+    status: CaseStatus.INVESTIGATING,
+    priority: CasePriority.CRITICAL,
+    risk_score: 0.96,
+    assigned_to: "Agent: Transaction Investigator",
+    findings: [
+      { finding_id: "f1", agent_name: "Transaction Investigator", finding_type: "velocity_anomaly", description: "23 transactions in 4 minutes across 5 countries — physically impossible travel", confidence: 0.97, evidence_refs: ["e1", "e2"], timestamp: "2026-07-23T14:25:00Z" },
+      { finding_id: "f2", agent_name: "Graph Detective", finding_type: "fraud_ring", description: "Entity connected to 4 confirmed fraud accounts via shared device fingerprint", confidence: 0.91, evidence_refs: ["e3"], timestamp: "2026-07-23T14:26:30Z" },
+      { finding_id: "f3", agent_name: "Behavior Analyst", finding_type: "behavioral_deviation", description: "Spending pattern deviates 14.2 sigma from 90-day baseline", confidence: 0.95, evidence_refs: ["e4"], timestamp: "2026-07-23T14:27:15Z" },
+    ],
+    evidence: [
+      { evidence_id: "e1", type: "transaction_log", source: "feature_engine", content: "Velocity: 23 tx in 240s, Normal: 2.1 tx/hour", metadata: {}, timestamp: "2026-07-23T14:25:00Z" },
+      { evidence_id: "e2", type: "geo_analysis", source: "feature_engine", content: "Countries: RO, NG, US, SG, VN within 4 minutes", metadata: {}, timestamp: "2026-07-23T14:25:00Z" },
+      { evidence_id: "e3", type: "graph_connection", source: "graph_engine", content: "Shared device dev_iphone15_x1 with 4 accounts flagged in past 30d", metadata: {}, timestamp: "2026-07-23T14:26:30Z" },
+      { evidence_id: "e4", type: "behavioral_profile", source: "behavioral_ai", content: "Baseline: $45/tx avg, Current session: $2,499 avg. Category shift: groceries → electronics + luxury", metadata: {}, timestamp: "2026-07-23T14:27:15Z" },
+    ],
+    timeline: [
+      { event_id: "t1", timestamp: "2026-07-23T14:24:00Z", event_type: "case_opened", description: "Auto-opened: Risk score 0.96 exceeded critical threshold", agent_name: "System" },
+      { event_id: "t2", timestamp: "2026-07-23T14:24:05Z", event_type: "agent_assigned", description: "Transaction Investigator agent assigned to case", agent_name: "Supervisor" },
+      { event_id: "t3", timestamp: "2026-07-23T14:25:00Z", event_type: "finding_reported", description: "Velocity anomaly detected: impossible travel pattern", agent_name: "Transaction Investigator" },
+      { event_id: "t4", timestamp: "2026-07-23T14:26:30Z", event_type: "finding_reported", description: "Fraud ring connection found via shared device", agent_name: "Graph Detective" },
+      { event_id: "t5", timestamp: "2026-07-23T14:27:15Z", event_type: "finding_reported", description: "14.2 sigma behavioral deviation confirmed", agent_name: "Behavior Analyst" },
+      { event_id: "t6", timestamp: "2026-07-23T14:28:00Z", event_type: "evidence_review", description: "All 3 agents concur: high-confidence fraud indicators. Recommending account block.", agent_name: "Risk Assessor" },
+    ],
+    created_at: "2026-07-23T14:24:00Z",
+    updated_at: "2026-07-23T14:28:00Z",
+    verdict: undefined,
+    sar_generated: false,
+  },
+  {
+    case_id: "CASE-2026-0846",
+    transaction_ids: ["txn_e5f6g7h8"],
+    entity_ids: ["usr_3a9c2"],
+    status: CaseStatus.EVIDENCE_REVIEW,
+    priority: CasePriority.HIGH,
+    risk_score: 0.87,
+    assigned_to: "Agent: Compliance Officer",
+    findings: [
+      { finding_id: "f4", agent_name: "Compliance Officer", finding_type: "sanctions_proximity", description: "Beneficiary bank is in jurisdiction with enhanced due diligence requirement", confidence: 0.82, evidence_refs: ["e5"], timestamp: "2026-07-23T13:50:00Z" },
+    ],
+    evidence: [
+      { evidence_id: "e5", type: "sanctions_check", source: "compliance_engine", content: "Beneficiary jurisdiction: Cayman Islands — FATF grey list", metadata: {}, timestamp: "2026-07-23T13:50:00Z" },
+    ],
+    timeline: [
+      { event_id: "t7", timestamp: "2026-07-23T13:48:00Z", event_type: "case_opened", description: "High-value wire to new beneficiary in high-risk jurisdiction", agent_name: "System" },
+      { event_id: "t8", timestamp: "2026-07-23T13:50:00Z", event_type: "finding_reported", description: "Sanctions proximity check flagged jurisdiction", agent_name: "Compliance Officer" },
+    ],
+    created_at: "2026-07-23T13:48:00Z",
+    updated_at: "2026-07-23T13:50:00Z",
+    verdict: undefined,
+    sar_generated: false,
+  },
+  {
+    case_id: "CASE-2026-0841",
+    transaction_ids: ["txn_q7r8s9t0"],
+    entity_ids: ["usr_1e5d4"],
+    status: CaseStatus.DECIDED,
+    priority: CasePriority.HIGH,
+    risk_score: 0.84,
+    assigned_to: "Agent: Decision Agent",
+    findings: [
+      { finding_id: "f5", agent_name: "Transaction Investigator", finding_type: "mixer_detection", description: "Destination wallet is a known Tornado Cash relay", confidence: 0.94, evidence_refs: [], timestamp: "2026-07-23T12:15:00Z" },
+    ],
+    evidence: [],
+    timeline: [
+      { event_id: "t9", timestamp: "2026-07-23T12:10:00Z", event_type: "case_opened", description: "Crypto transfer to known mixer address", agent_name: "System" },
+      { event_id: "t10", timestamp: "2026-07-23T12:15:00Z", event_type: "finding_reported", description: "Confirmed Tornado Cash relay address", agent_name: "Transaction Investigator" },
+      { event_id: "t11", timestamp: "2026-07-23T12:20:00Z", event_type: "verdict", description: "BLOCK — confirmed money laundering attempt. SAR filed.", agent_name: "Decision Agent" },
+    ],
+    created_at: "2026-07-23T12:10:00Z",
+    updated_at: "2026-07-23T12:20:00Z",
+    closed_at: "2026-07-23T12:20:00Z",
+    verdict: "CONFIRMED_FRAUD",
+    sar_generated: true,
+  },
+];
