@@ -1,10 +1,11 @@
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Union
 import uuid
 import asyncio
 
 from core.schemas.investigation import InvestigationCase, CaseStatus, TimelineEvent, Finding, CasePriority
 from core.schemas.transaction import TransactionCreate
 from core.schemas.risk import RiskExplanation
+from services.risk_engine.engine import ScoringResult
 from core.utils.helpers import utc_now
 
 from .base import InvestigationContext
@@ -32,19 +33,20 @@ class InvestigationOrchestrator:
             'report_generator': ReportGenerator()
         }
 
-    async def run_investigation(self, transaction: TransactionCreate, risk_explanation: RiskExplanation) -> InvestigationCase:
+    async def run_investigation(self, transaction: TransactionCreate, risk_result: Union[ScoringResult, RiskExplanation]) -> InvestigationCase:
+        score = risk_result.score if isinstance(risk_result, ScoringResult) else getattr(risk_result, 'risk_score', 0.0)
         case = InvestigationCase(
             case_id=f"CASE-{uuid.uuid4().hex[:8].upper()}",
             transaction_id=transaction.transaction_id or "",
             status=CaseStatus.OPEN,
-            priority=CasePriority.HIGH if risk_explanation.risk_score > 0.8 else CasePriority.MEDIUM
+            priority=CasePriority.HIGH if score > 0.8 else CasePriority.MEDIUM
         )
-        
+
         context = InvestigationContext(
             case=case,
             transaction=transaction,
             features={},
-            risk_score=risk_explanation.risk_score
+            risk_score=score
         )
         
         case.timeline.append(TimelineEvent(event_type="ALERT", description="Investigation started"))

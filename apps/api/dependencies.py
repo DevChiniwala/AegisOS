@@ -12,6 +12,7 @@ from services.behavioral_ai.engine import BehavioralIntelligenceEngine
 from services.agents.orchestrator import InvestigationOrchestrator
 from services.memory.engine import MemoryEngine
 from services.explainability.engine import ExplainabilityEngine
+from models.base import ModelRegistry
 
 _feature_engine = None
 _risk_engine = None
@@ -32,7 +33,10 @@ def get_feature_engine() -> FeatureEngineeringEngine:
 def get_risk_engine() -> RiskScoringEngine:
     global _risk_engine
     if _risk_engine is None:
-        _risk_engine = RiskScoringEngine()
+        registry = ModelRegistry()
+        registry.register_defaults()
+        models = list(registry._models.values())
+        _risk_engine = RiskScoringEngine(models)
     return _risk_engine
 
 
