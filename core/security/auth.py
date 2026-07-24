@@ -1,5 +1,6 @@
-from datetime import datetime, timedelta
-from typing import Any, Dict, Optional
+from datetime import datetime, timedelta, timezone
+from typing import Any, Dict, Optional, Set
+from uuid import uuid4
 from jose import jwt, JWTError
 from passlib.context import CryptContext
 from fastapi import Depends
@@ -12,6 +13,8 @@ settings = get_settings()
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
+_token_blacklist: Set[str] = set()
+
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     return pwd_context.verify(plain_password, hashed_password)
@@ -23,27 +26,48 @@ def get_password_hash(password: str) -> str:
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
     to_encode = data.copy()
+    now = datetime.now(timezone.utc)
     if expires_delta:
-        expire = datetime.utcnow() + expires_delta
+        expire = now + expires_delta
     else:
-        expire = datetime.utcnow() + timedelta(seconds=settings.security.access_token_expire)
-    to_encode.update({"exp": expire})
+        expire = now + timedelta(seconds=settings.security.access_token_expire)
+    to_encode.update({
+        "exp": expire,
+        "iat": now,
+        "jti": str(uuid4()),
+    })
     encoded_jwt = jwt.encode(to_encode, settings.security.secret_key, algorithm=settings.security.algorithm)
     return encoded_jwt
 
 
 def create_refresh_token(data: dict) -> str:
-    # Set a longer expiration for refresh tokens, e.g., 7 days
-    expire = datetime.utcnow() + timedelta(days=7)
+    now = datetime.now(timezone.utc)
+    expire = now + timedelta(days=7)
     to_encode = data.copy()
-    to_encode.update({"exp": expire})
+    to_encode.update({
+        "exp": expire,
+        "iat": now,
+        "jti": str(uuid4()),
+        "type": "refresh",
+    })
     encoded_jwt = jwt.encode(to_encode, settings.security.secret_key, algorithm=settings.security.algorithm)
     return encoded_jwt
+
+
+def revoke_token(jti: str) -> None:
+    _token_blacklist.add(jti)
+
+
+def is_token_revoked(jti: str) -> bool:
+    return jti in _token_blacklist
 
 
 def decode_token(token: str) -> dict:
     try:
         payload = jwt.decode(token, settings.security.secret_key, algorithms=[settings.security.algorithm])
+        jti = payload.get("jti")
+        if jti and is_token_revoked(jti):
+            raise AuthenticationError("Token has been revoked")
         return payload
     except JWTError as e:
         raise AuthenticationError("Could not validate credentials") from e

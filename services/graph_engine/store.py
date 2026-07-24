@@ -1,13 +1,30 @@
 from typing import Protocol, List, Dict, Any, Optional
+import re
 import threading
 import networkx as nx
 from neo4j import AsyncGraphDatabase
-from datetime import datetime
+from datetime import datetime, timezone
 
 from .schema import GraphNode, GraphEdge, NodeType, EdgeType
 from core.utils.logging import get_logger
 
 logger = get_logger(__name__)
+
+_VALID_EDGE_TYPES = frozenset(e.value for e in EdgeType)
+_VALID_PROPERTY_NAMES = re.compile(r"^[a-z][a-z0-9_]{0,63}$")
+_MAX_SUBGRAPH_DEPTH = 5
+
+
+def _validate_edge_type(value: str) -> str:
+    if value not in _VALID_EDGE_TYPES:
+        raise ValueError(f"Invalid edge type: {value}")
+    return value
+
+
+def _validate_property_key(key: str) -> str:
+    if not _VALID_PROPERTY_NAMES.match(key):
+        raise ValueError(f"Invalid property key: {key}")
+    return key
 
 class GraphStore(Protocol):
     async def add_node(self, node: GraphNode) -> None: ...
@@ -122,17 +139,18 @@ class Neo4jGraphStore:
             await session.run(query, node_id=node.node_id, props=props, node_type=node.node_type.value)
 
     async def add_edge(self, edge: GraphEdge) -> None:
+        rel_type = _validate_edge_type(edge.edge_type.value)
         query = f"""
         MATCH (s:Node {{node_id: $source_id}})
         MATCH (t:Node {{node_id: $target_id}})
-        MERGE (s)-[r:{edge.edge_type.value} {{edge_id: $edge_id}}]->(t)
+        MERGE (s)-[r:{rel_type} {{edge_id: $edge_id}}]->(t)
         SET r += $props
         """
         props = edge.model_dump()
         props['timestamp'] = props['timestamp'].isoformat()
-        
+
         async with self._driver.session() as session:
-            await session.run(query, source_id=edge.source_id, target_id=edge.target_id, 
+            await session.run(query, source_id=edge.source_id, target_id=edge.target_id,
                               edge_id=edge.edge_id, props=props)
 
     async def get_node(self, node_id: str) -> Optional[GraphNode]:
@@ -146,7 +164,10 @@ class Neo4jGraphStore:
             return None
 
     async def get_neighbors(self, node_id: str, edge_type: Optional[EdgeType] = None) -> List[GraphNode]:
-        rel = f":{edge_type.value}" if edge_type else ""
+        if edge_type:
+            rel = f":{_validate_edge_type(edge_type.value)}"
+        else:
+            rel = ""
         query = f"MATCH (n:Node {{node_id: $node_id}})-[{rel}]-(m:Node) RETURN m"
         async with self._driver.session() as session:
             result = await session.run(query, node_id=node_id)
@@ -173,6 +194,7 @@ class Neo4jGraphStore:
             return edges
 
     async def query_subgraph(self, node_id: str, depth: int = 2) -> Dict[str, Any]:
+        depth = max(1, min(int(depth), _MAX_SUBGRAPH_DEPTH))
         query = f"""
         MATCH p=(n:Node {{node_id: $node_id}})-[*1..{depth}]-(m:Node)
         RETURN nodes(p) as nodes, relationships(p) as edges
@@ -195,9 +217,10 @@ class Neo4jGraphStore:
             return {"nodes": nodes, "edges": edges}
 
     async def update_node_property(self, node_id: str, key: str, value: Any) -> None:
+        safe_key = _validate_property_key(key)
         query = f"""
         MATCH (n:Node {{node_id: $node_id}})
-        SET n.{key} = $value, n.updated_at = $timestamp
+        SET n.{safe_key} = $value, n.updated_at = $timestamp
         """
         async with self._driver.session() as session:
-            await session.run(query, node_id=node_id, value=value, timestamp=datetime.utcnow().isoformat())
+            await session.run(query, node_id=node_id, value=value, timestamp=datetime.now(timezone.utc).isoformat())

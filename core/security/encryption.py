@@ -1,18 +1,32 @@
 import base64
 from cryptography.fernet import Fernet
+from cryptography.hazmat.primitives.kdf.hkdf import HKDF
+from cryptography.hazmat.primitives import hashes
 from typing import Any, Optional
 from sqlalchemy.types import TypeDecorator, String
 from core.config.settings import get_settings
 
-settings = get_settings()
+_cipher_instance: Optional[Fernet] = None
 
-# For simplicity, using Fernet which is AES-128 in CBC mode with HMAC
-# Key must be 32 URL-safe base64-encoded bytes
+
 def get_cipher() -> Fernet:
-    # Ensure key is properly sized, padding or truncating as needed for Fernet
+    global _cipher_instance
+    if _cipher_instance is not None:
+        return _cipher_instance
+
+    settings = get_settings()
     raw_key = settings.security.secret_key.encode('utf-8')
-    padded_key = base64.urlsafe_b64encode(raw_key.ljust(32)[:32])
-    return Fernet(padded_key)
+
+    hkdf = HKDF(
+        algorithm=hashes.SHA256(),
+        length=32,
+        salt=b"aegisos-encryption-salt-v1",
+        info=b"aegisos-field-encryption",
+    )
+    derived_key = hkdf.derive(raw_key)
+    fernet_key = base64.urlsafe_b64encode(derived_key)
+    _cipher_instance = Fernet(fernet_key)
+    return _cipher_instance
 
 
 def encrypt_field(data: str) -> str:
@@ -30,8 +44,8 @@ def decrypt_field(encrypted_data: str) -> str:
 
 
 class EncryptedString(TypeDecorator):
-    """Custom SQLAlchemy type for transparent encryption/decryption"""
-    
+    """Custom SQLAlchemy type for transparent encryption/decryption."""
+
     impl = String
     cache_ok = True
 
