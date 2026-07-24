@@ -108,3 +108,36 @@ app.include_router(dashboard.router, prefix="/api/v1/dashboard", tags=["Dashboar
 async def health_check():
     """Basic health check endpoint."""
     return {"status": "ok", "timestamp": time.time()}
+
+
+@app.get("/ready", tags=["System"])
+async def readiness_check():
+    """Readiness probe — checks all critical dependencies."""
+    checks = {}
+
+    checks["risk_engine"] = hasattr(app.state, "risk_engine") and app.state.risk_engine is not None
+    checks["feature_engine"] = hasattr(app.state, "feature_engine") and app.state.feature_engine is not None
+    checks["event_bus"] = hasattr(app.state, "event_bus") and app.state.event_bus is not None
+
+    try:
+        import redis as redis_lib
+        r = redis_lib.Redis(host="localhost", port=6379, socket_timeout=1)
+        r.ping()
+        checks["redis"] = True
+    except Exception:
+        checks["redis"] = False
+
+    all_ready = all(v for k, v in checks.items() if k != "redis")
+    return {
+        "ready": all_ready,
+        "checks": checks,
+        "timestamp": time.time(),
+    }
+
+
+@app.get("/metrics", tags=["System"])
+async def prometheus_metrics():
+    """Prometheus metrics endpoint."""
+    from fastapi.responses import PlainTextResponse
+    from core.telemetry import metrics
+    return PlainTextResponse(metrics.prometheus_text(), media_type="text/plain")
