@@ -26,7 +26,40 @@
 
 **AegisOS** is the world's most advanced open-source fraud intelligence platform. Built for enterprise scale, it moves beyond simple classification to provide a comprehensive, multi-agent AI system capable of **autonomous fraud detection, investigation, reasoning, and reporting**.
 
-Unlike traditional systems that rely on static thresholds or a single ML classifier, AegisOS employs a layered intelligence architecture that combines **rule-based fast-path evaluation**, **SHAP-weighted ensemble models**, **graph-based fraud ring detection**, **behavioral AI profiling**, and **9 autonomous AI agents** that investigate flagged transactions and generate audit-ready Suspicious Activity Reports (SARs).
+Unlike traditional systems that rely on static thresholds or a single ML classifier, AegisOS employs a layered intelligence architecture that combines **rule-based fast-path evaluation**, **SHAP-weighted ensemble models**, **graph-based fraud ring detection**, **behavioral AI profiling**, and a **12-agent LangGraph investigation swarm** that autonomously investigates flagged transactions and generates audit-ready Suspicious Activity Reports (SARs).
+
+### Try it in 30 seconds
+
+```bash
+pip install aegisos
+aegis demo
+```
+
+This generates synthetic data, starts the API, and opens the dashboard. Or use the SDK:
+
+```python
+from packages.sdk_python import AegisClient
+
+client = AegisClient()
+result = client.transactions.score(amount=15000, sender_id="user_123")
+print(f"Risk: {result.risk_score:.3f} ({result.risk_level})")
+```
+
+### Claude/Cursor Integration (MCP)
+
+Add to your `claude_desktop_config.json`:
+```json
+{
+  "mcpServers": {
+    "aegisos": {
+      "command": "python",
+      "args": ["-m", "packages.mcp_server.server"]
+    }
+  }
+}
+```
+
+Then ask Claude: *"Score this $50,000 wire transfer from user_456 to offshore_merchant_789"*
 
 ### Who is this for?
 
@@ -77,7 +110,7 @@ AegisOS is built as an **event-driven microservices** architecture with 5 distin
                  ↓ Platt-calibrated probability output
 5. VERDICT    Risk level assigned: ALLOW | FLAG | BLOCK
                  ↓ if score > 0.7 → trigger full investigation
-6. INVESTIGATE  9 AI agents dispatched by Supervisor
+6. INVESTIGATE  12 AI agents dispatched by LangGraph orchestrator
                  ↓ parallel analysis across all intelligence engines
 7. COMPILE    Evidence chain assembled, confidence scored
                  ↓ Decision Agent renders final verdict
@@ -92,7 +125,7 @@ AegisOS is built as an **event-driven microservices** architecture with 5 distin
 |------|---------|-------------|
 | Fast Path (Rule Hit) | **< 20ms** | Immediate BLOCK for known fraud patterns |
 | ML Scoring | **< 50ms** | Full ensemble with calibration |
-| Investigation | **< 5s** | 9 agents analyzing in parallel |
+| Investigation | **< 5s** | 12 agents analyzing in parallel |
 
 ---
 
@@ -156,47 +189,81 @@ Model agreement is measured via cosine similarity of SHAP vectors. Higher agreem
 
 ---
 
-### Multi-Agent Investigation System
+### Multi-Agent Investigation System (LangGraph)
 
-When a transaction scores above the investigation threshold (0.7), the **Supervisor Agent** orchestrates 9 specialized AI agents:
+When a transaction scores above the investigation threshold (0.7), the **LangGraph Orchestrator** dispatches a 12-agent investigation swarm with conditional routing, parallel execution, and crash-resilient checkpointing:
 
 ```
-                         ┌──────────────────┐
-                         │   SUPERVISOR     │
-                         │   (Orchestrator) │
-                         └────────┬─────────┘
-                                  │
-              ┌───────────────────┼───────────────────┐
-              │                   │                   │
-     ┌────────┴────────┐  ┌──────┴──────┐  ┌────────┴────────┐
-     │  Tx Investigator │  │Graph Detective│  │Behavior Analyst │
-     │  Amount, Z-score │  │Ring proximity │  │Temporal patterns│
-     │  Velocity, Type  │  │Shared entities│  │Spending habits  │
-     └─────────────────┘  └─────────────┘  └─────────────────┘
-              │                   │                   │
-     ┌────────┴────────┐  ┌──────┴──────┐  ┌────────┴────────┐
-     │Evidence Collector│  │Risk Assessor │  │Compliance Officer│
-     │Gather artifacts  │  │Score & weigh │  │AML/KYC/SAR check│
-     └─────────────────┘  └─────────────┘  └─────────────────┘
-              │                   │                   │
-              └───────────────────┼───────────────────┘
-                                  │
-                    ┌─────────────┴─────────────┐
-                    │       Decision Agent       │
-                    │  Final verdict + confidence│
-                    └─────────────┬─────────────┘
-                                  │
-                    ┌─────────────┴─────────────┐
-                    │     Report Generator       │
-                    │   SAR + Audit narrative    │
-                    └───────────────────────────┘
+  ┌─────────┐     ┌────────┐     ┌─────────────────┐     ┌────────────────┐
+  │ Planner │────▶│ Triage │────▶│Entity Resolution│────▶│ Graph Analysis │
+  └─────────┘     └────────┘     └─────────────────┘     └───────┬────────┘
+                                                                   │
+                                                    ┌──────────────┼──────────────┐
+                                                    │ risk > 0.6   │  risk ≤ 0.6  │
+                                                    ▼              │              ▼
+                                              ┌──────────┐         │    ┌─────────────────┐
+                                              │ Timeline │         │    │ Risk Assessment │
+                                              └────┬─────┘         │    └────────┬────────┘
+                                                   ▼               │             │
+                                              ┌──────────┐         │             │
+                                              │ Behavior │         │             │
+                                              └────┬─────┘         │             │
+                                                   ▼               │             │
+                                              ┌─────────────────┐  │             │
+                                              │ Risk Assessment │◀─┘             │
+                                              └────────┬────────┘               │
+                                                       ▼                         │
+                                              ┌────────────────┐                │
+                                              │   Root Cause   │◀───────────────┘
+                                              └────────┬───────┘
+                                                       │
+                                        ┌──────────────┼──────────────┐
+                                        │ risk > 0.7   │  risk ≤ 0.7  │
+                                        ▼              │              ▼
+                                  ┌────────────┐       │    ┌────────────────┐
+                                  │ Compliance │       │    │ Recommendation │
+                                  └──────┬─────┘       │    └───────┬────────┘
+                                         ▼             │            │
+                                  ┌────────────────┐   │            │
+                                  │ Recommendation │◀──┘            │
+                                  └───────┬────────┘               │
+                                          ▼                         ▼
+                                  ┌─────────────┐          ┌─────────────┐
+                                  │  Narrative  │◀─────────│  Narrative  │
+                                  └──────┬──────┘          └─────────────┘
+                                         ▼
+                                  ┌─────────────┐
+                                  │  Reflector  │  (quality gate)
+                                  └──────┬──────┘
+                                         ▼
+                                  ┌─────────────┐
+                                  │  Decision   │
+                                  └─────────────┘
 ```
 
-Each agent:
-- Receives full investigation context (transaction, features, graph data, behavioral profile)
-- Produces a **Finding** with confidence score and evidence references
-- Operates independently — no shared state between agents
-- Results are compiled by the Decision Agent for final verdict
+**12 Agents:**
+
+| Agent | Role | Focus |
+|-------|------|-------|
+| Planner | Investigation Architect | Decomposes investigation into prioritized sub-tasks |
+| Triage | Initial Assessment | Fast risk classification with LLM reasoning |
+| Entity Resolver | Identity Analyst | Cross-identity linking (devices, IPs, emails) |
+| Graph Detective | Network Analyst | Fraud ring proximity, graph centrality |
+| Timeline Reconstructor | Temporal Analyst | Velocity anomalies, temporal clustering |
+| Behavior Analyst | Behavioral AI | Spending patterns, channel deviations |
+| Risk Assessor | Quantitative Analyst | Consolidated multi-dimensional risk scoring |
+| Root Cause Analyst | Forensic Analyst | Attack vector identification |
+| Compliance Officer | Regulatory Expert | OFAC/PEP screening, SAR determination |
+| Recommendation Agent | Controls Advisor | Preventive actions and remediation |
+| Narrative Generator | Report Writer | FinCEN-compliant SAR narratives |
+| Reflector | Quality Assurance | Validates reasoning, identifies gaps |
+
+**Architecture features:**
+- **LangGraph StateGraph** with conditional edges and parallel execution
+- **Model Router**: routes LLM calls to optimal model tier (fast vs powerful)
+- **Checkpointing**: crash-resilient via MemorySaver — resumes mid-investigation
+- **Streaming**: `astream_events()` for real-time UI updates
+- **Event Sourcing**: every agent action is an immutable, auditable event
 
 ---
 
@@ -672,7 +739,17 @@ docs: description                # Documentation
 - [ ] Federated learning for cross-institutional models
 - [ ] Production Qdrant integration (beyond in-memory)
 - [ ] Kafka integration for high-throughput streaming
-- [ ] Grafana dashboards + Prometheus metrics
+- [x] Grafana dashboards + Prometheus metrics
+- [x] 12-agent LangGraph investigation swarm
+- [x] CLI tool (`pip install aegisos && aegis demo`)
+- [x] Python SDK (OpenAI-style typed client)
+- [x] MCP Server (Claude/Cursor integration)
+- [x] Event Sourcing with lifecycle state machine
+- [x] GraphRAG + Entity Resolution engine
+- [x] Compliance RAG with SAR templates
+- [ ] Temporal.io durable workflows
+- [ ] Kubernetes / IaC
+- [ ] Full E2E test suite
 
 ---
 
