@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "aegisos": {
+      "command": "python",
+      "args": ["-m", "packages.mcp_server.server"],
+      "env": {}
+    }
+  }
+}
