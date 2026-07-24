@@ -61,10 +61,11 @@ def retry_async(retries: int = 3, delay: float = 1.0, backoff: float = 2.0):
 
 class Timer:
     """Context manager for performance measurement."""
-    def __init__(self, name: str, logger: Any = None):
+    def __init__(self, name: str = "", logger: Any = None):
         self.name = name
         self.logger = logger
         self.start_time = 0.0
+        self.elapsed_ms = 0.0
 
     def __enter__(self):
         self.start_time = time.perf_counter()
@@ -72,7 +73,6 @@ class Timer:
 
     def __exit__(self, exc_type: Any, exc_val: Any, exc_tb: Any):
         elapsed = time.perf_counter() - self.start_time
+        self.elapsed_ms = elapsed * 1000
         if self.logger:
             self.logger.info(f"{self.name} took {elapsed:.4f}s")
-        else:
-            print(f"{self.name} took {elapsed:.4f}s")

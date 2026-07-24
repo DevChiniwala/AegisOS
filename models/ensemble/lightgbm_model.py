@@ -35,19 +35,25 @@ class LightGBMFraudModel:
         return self._version
         
     def predict(self, features: Dict[str, float]) -> float:
-        if not self.model: return 0.5
-        import numpy as np
-        X = np.array([list(features.values())])
-        return float(self.model.predict_proba(X)[0][1])
-        
+        if self.model is None: return 0.5
+        try:
+            import numpy as np
+            X = np.array([list(features.values())])
+            return float(self.model.predict_proba(X)[0][1])
+        except Exception:
+            return 0.5
+
     def predict_batch(self, features: List[Dict[str, float]]) -> List[float]:
-        if not self.model: return [0.5]*len(features)
-        import numpy as np
-        X = np.array([[f for f in feat.values()] for feat in features])
-        return self.model.predict_proba(X)[:, 1].tolist()
+        if self.model is None: return [0.5]*len(features)
+        try:
+            import numpy as np
+            X = np.array([[f for f in feat.values()] for feat in features])
+            return self.model.predict_proba(X)[:, 1].tolist()
+        except Exception:
+            return [0.5] * len(features)
         
     def explain(self, features: Dict[str, float]) -> Dict[str, float]:
-        if not self.model or not shap:
+        if self.model is None or not shap:
             return {}
         try:
             import numpy as np

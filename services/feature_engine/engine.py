@@ -44,7 +44,7 @@ class FeatureEngineeringEngine:
             timestamp=utc_now()
         )
         
-        with Timer() as timer:
+        with Timer("feature_extraction") as timer:
             for extractor in self.extractors:
                 try:
                     ext_features = extractor.extract(transaction, context)

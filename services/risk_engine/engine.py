@@ -51,7 +51,7 @@ class RiskScoringEngine:
         return RiskVerdict.APPROVE
 
     def score_transaction(self, transaction: TransactionCreate, features: Dict[str, float]) -> ScoringResult:
-        with Timer() as timer:
+        with Timer("risk_scoring") as timer:
             rule_result = self._fast_path_rules(transaction, features)
 
             score = 0.0

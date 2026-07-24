@@ -2,8 +2,12 @@ from typing import Protocol, List, Dict, Any, Optional
 import re
 import threading
 import networkx as nx
-from neo4j import AsyncGraphDatabase
 from datetime import datetime, timezone
+
+try:
+    from neo4j import AsyncGraphDatabase
+except ImportError:
+    AsyncGraphDatabase = None
 
 from .schema import GraphNode, GraphEdge, NodeType, EdgeType
 from core.utils.logging import get_logger

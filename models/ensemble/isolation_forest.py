@@ -13,6 +13,7 @@ class IsolationForestModel:
         self._name = "isolation_forest"
         self._version = "1.0.0"
         self.model = None
+        self._fitted = False
         if IsolationForest:
             self.model = IsolationForest(
                 n_estimators=200,
@@ -29,14 +30,16 @@ class IsolationForestModel:
         return self._version
         
     def predict(self, features: Dict[str, float]) -> float:
-        if not self.model: return 0.5
+        if self.model is None or not self._fitted:
+            return 0.5
         X = np.array([list(features.values())])
         score = self.model.decision_function(X)[0]
         prob = 1.0 - (1.0 / (1.0 + np.exp(-score)))
         return float(prob)
-        
+
     def predict_batch(self, features: List[Dict[str, float]]) -> List[float]:
-        if not self.model: return [0.5]*len(features)
+        if self.model is None or not self._fitted:
+            return [0.5] * len(features)
         X = np.array([[f for f in feat.values()] for feat in features])
         scores = self.model.decision_function(X)
         probs = 1.0 - (1.0 / (1.0 + np.exp(-scores)))
