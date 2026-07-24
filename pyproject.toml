@@ -3,8 +3,11 @@ requires = ["setuptools>=68.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-include = ["core*", "apps*", "models*", "services*"]
+include = ["core*", "apps*", "models*", "services*", "packages*"]
 exclude = ["tests*", "datasets*", "infrastructure*", "docs*"]
+
+[project.scripts]
+aegis = "apps.cli.__main__:main"
 
 [project]
 name = "aegisos"
@@ -28,7 +31,9 @@ dependencies = [
     "pyyaml",
     "networkx",
     "python-louvain",
-    "numpy"
+    "numpy",
+    "typer[all]",
+    "rich",
 ]
 
 [project.optional-dependencies]
@@ -63,6 +68,9 @@ telemetry = [
     "opentelemetry-instrumentation-fastapi",
     "opentelemetry-exporter-otlp"
 ]
+mcp = [
+    "mcp",
+]
 all = [
     "xgboost",
     "lightgbm",
@@ -86,7 +94,8 @@ all = [
     "opentelemetry-api",
     "opentelemetry-sdk",
     "opentelemetry-instrumentation-fastapi",
-    "opentelemetry-exporter-otlp"
+    "opentelemetry-exporter-otlp",
+    "mcp",
 ]
 
 [tool.pytest.ini_options]
