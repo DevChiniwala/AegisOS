@@ -25,7 +25,7 @@ async def score_transaction(transaction: TransactionCreate, request: Request):
 
     result = risk_engine.score_transaction(transaction, features)
 
-    return TransactionResponse(
+    response = TransactionResponse(
         id=generate_id(),
         type=transaction.type,
         amount=transaction.amount,
@@ -35,6 +35,28 @@ async def score_transaction(transaction: TransactionCreate, request: Request):
         risk_score=result.score,
         risk_level=result.level.value
     )
+
+    from apps.api.routes.streaming import get_connection_manager
+    mgr = get_connection_manager()
+    await mgr.broadcast_transaction({
+        "transaction_id": response.id,
+        "amount": float(transaction.amount),
+        "currency": transaction.currency,
+        "risk_score": result.score,
+        "risk_level": result.level.value,
+        "sender_id": transaction.sender_id if hasattr(transaction, "sender_id") else "",
+        "receiver_id": transaction.receiver_id if hasattr(transaction, "receiver_id") else "",
+    })
+
+    if result.score > 0.8:
+        await mgr.broadcast_alert({
+            "type": "high_risk",
+            "transaction_id": response.id,
+            "risk_score": result.score,
+            "amount": float(transaction.amount),
+        })
+
+    return response
 
 
 @router.post("/batch", response_model=List[TransactionResponse])
