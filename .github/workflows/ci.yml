@@ -12,7 +12,7 @@ env:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+
     services:
       redis:
         image: redis:7-alpine
@@ -23,25 +23,29 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-          
+
     steps:
     - uses: actions/checkout@v4
-    
+
     - name: Set up Python ${{ env.PYTHON_VERSION }}
       uses: actions/setup-python@v5
       with:
         python-version: ${{ env.PYTHON_VERSION }}
         cache: 'pip'
-        
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -e "."
-        pip install pytest ruff networkx python-louvain pyyaml numpy
+        pip install pytest ruff bandit networkx python-louvain pyyaml numpy
 
     - name: Linting (ruff)
       run: |
-        ruff check . --select E,F --ignore E501 || true
+        ruff check . --select E,F --ignore E501,E402 --exclude apps/dashboard
+
+    - name: Security scan (bandit)
+      run: |
+        bandit -r core services apps -s B101,B104 --quiet || true
 
     - name: Run unit tests
       run: |
@@ -51,12 +55,12 @@ jobs:
     needs: test
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v4
-    
+
     - name: Build API image
       run: docker build -t aegisos/api:latest -f infrastructure/docker/Dockerfile.api .
-      
+
     - name: Build Worker image
       run: docker build -t aegisos/worker:latest -f infrastructure/docker/Dockerfile.worker .
