@@ -51,8 +51,17 @@ agents = [
     "openai",
     "anthropic",
     "langchain-core",
+    "langchain-anthropic",
+    "langchain-openai",
+    "langgraph",
     "tiktoken",
     "faiss-cpu"
+]
+telemetry = [
+    "opentelemetry-api",
+    "opentelemetry-sdk",
+    "opentelemetry-instrumentation-fastapi",
+    "opentelemetry-exporter-otlp"
 ]
 all = [
     "xgboost",
@@ -69,8 +78,15 @@ all = [
     "openai",
     "anthropic",
     "langchain-core",
+    "langchain-anthropic",
+    "langchain-openai",
+    "langgraph",
     "tiktoken",
-    "faiss-cpu"
+    "faiss-cpu",
+    "opentelemetry-api",
+    "opentelemetry-sdk",
+    "opentelemetry-instrumentation-fastapi",
+    "opentelemetry-exporter-otlp"
 ]
 
 [tool.pytest.ini_options]
