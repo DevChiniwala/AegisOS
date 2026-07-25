@@ -10,12 +10,32 @@ export const mockOverview: DashboardOverview = {
   alerts_change: 8.5,
 };
 
-export const mockTimeline: TimelineDataPoint[] = Array.from({ length: 24 }, (_, i) => ({
-  timestamp: `2026-07-23T${String(i).padStart(2, "0")}:00:00Z`,
-  transactions: Math.floor(8000 + Math.random() * 4000),
-  fraud_count: Math.floor(5 + Math.random() * 20),
-  avg_risk: 0.03 + Math.random() * 0.04,
-}));
+export const mockTimeline: TimelineDataPoint[] = [
+  { timestamp: "2026-07-23T00:00:00Z", transactions: 9200, fraud_count: 12, avg_risk: 0.031 },
+  { timestamp: "2026-07-23T01:00:00Z", transactions: 7800, fraud_count: 8, avg_risk: 0.029 },
+  { timestamp: "2026-07-23T02:00:00Z", transactions: 6100, fraud_count: 5, avg_risk: 0.025 },
+  { timestamp: "2026-07-23T03:00:00Z", transactions: 4500, fraud_count: 4, avg_risk: 0.022 },
+  { timestamp: "2026-07-23T04:00:00Z", transactions: 4200, fraud_count: 3, avg_risk: 0.021 },
+  { timestamp: "2026-07-23T05:00:00Z", transactions: 5100, fraud_count: 6, avg_risk: 0.024 },
+  { timestamp: "2026-07-23T06:00:00Z", transactions: 8400, fraud_count: 15, avg_risk: 0.035 },
+  { timestamp: "2026-07-23T07:00:00Z", transactions: 11200, fraud_count: 22, avg_risk: 0.042 },
+  { timestamp: "2026-07-23T08:00:00Z", transactions: 13500, fraud_count: 28, avg_risk: 0.045 },
+  { timestamp: "2026-07-23T09:00:00Z", transactions: 14200, fraud_count: 31, avg_risk: 0.048 },
+  { timestamp: "2026-07-23T10:00:00Z", transactions: 13800, fraud_count: 29, avg_risk: 0.046 },
+  { timestamp: "2026-07-23T11:00:00Z", transactions: 14100, fraud_count: 32, avg_risk: 0.049 },
+  { timestamp: "2026-07-23T12:00:00Z", transactions: 15200, fraud_count: 145, avg_risk: 0.120 }, // Simulated Fraud Attack
+  { timestamp: "2026-07-23T13:00:00Z", transactions: 15600, fraud_count: 180, avg_risk: 0.145 },
+  { timestamp: "2026-07-23T14:00:00Z", transactions: 14900, fraud_count: 45, avg_risk: 0.055 },
+  { timestamp: "2026-07-23T15:00:00Z", transactions: 14200, fraud_count: 31, avg_risk: 0.047 },
+  { timestamp: "2026-07-23T16:00:00Z", transactions: 13900, fraud_count: 28, avg_risk: 0.045 },
+  { timestamp: "2026-07-23T17:00:00Z", transactions: 15100, fraud_count: 35, avg_risk: 0.051 },
+  { timestamp: "2026-07-23T18:00:00Z", transactions: 16800, fraud_count: 42, avg_risk: 0.058 },
+  { timestamp: "2026-07-23T19:00:00Z", transactions: 17200, fraud_count: 44, avg_risk: 0.061 },
+  { timestamp: "2026-07-23T20:00:00Z", transactions: 15500, fraud_count: 38, avg_risk: 0.054 },
+  { timestamp: "2026-07-23T21:00:00Z", transactions: 13200, fraud_count: 25, avg_risk: 0.042 },
+  { timestamp: "2026-07-23T22:00:00Z", transactions: 11400, fraud_count: 18, avg_risk: 0.038 },
+  { timestamp: "2026-07-23T23:00:00Z", transactions: 9800, fraud_count: 14, avg_risk: 0.034 },
+];
 
 export const mockTopRisks: TopRisk[] = [
   { entity_id: "usr_8d2f1", entity_type: "user", name: "Viktor Petrov", risk_score: 0.94, reason: "Velocity spike: 23 transactions in 4 minutes across 5 countries" },
