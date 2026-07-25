@@ -86,7 +86,7 @@ class InvestigationOrchestrator:
         context.previous_findings.append(decision_finding)
 
         # Step 7: Supervisor Quality Check
-        supervisor_finding = await self.agents['supervisor'].investigate(context)
+        await self.agents['supervisor'].investigate(context)
         
         # Step 8: Report Generation
         case.timeline.append(TimelineEvent(event_type="REPORT", description="Generating investigation report"))

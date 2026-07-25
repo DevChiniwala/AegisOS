@@ -162,7 +162,6 @@ class AegisFederatedTrainer:
         if not NUMPY_AVAILABLE:
             return self._global_weights.copy(), 0.5
 
-        n_features = 10
         weights = {}
         for key, val in self._global_weights.items():
             if hasattr(val, 'shape'):

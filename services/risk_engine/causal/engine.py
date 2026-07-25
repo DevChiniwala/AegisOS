@@ -18,16 +18,16 @@ from services.risk_engine.causal.dag import FinancialCausalDAG
 logger = get_logger(__name__)
 
 try:
-    import dowhy
-    from dowhy import CausalModel
+    import dowhy  # noqa: F401
+    from dowhy import CausalModel  # noqa: F401
 
     DOWHY_AVAILABLE = True
 except ImportError:
     DOWHY_AVAILABLE = False
 
 try:
-    import numpy as np
-    import pandas as pd
+    import numpy as np  # noqa: F401
+    import pandas as pd  # noqa: F401
 
     PANDAS_AVAILABLE = True
 except ImportError:

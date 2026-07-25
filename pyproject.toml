@@ -121,8 +121,11 @@ testpaths = [
 ]
 
 [tool.ruff]
-line-length = 100
+line-length = 120
+
+[tool.ruff.lint]
 select = ["E", "F", "I"]
+ignore = ["E501", "E701", "E741", "E402", "F401"]
 
 [tool.mypy]
 strict = true

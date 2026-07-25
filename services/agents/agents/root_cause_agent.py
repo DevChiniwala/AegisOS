@@ -19,7 +19,6 @@ class RootCauseAgent(BaseAgent):
         features = context.features
         graph_data = context.graph_data
         previous = context.previous_findings
-        risk = context.risk_score
         causes = []
         confidence = 0.4
 

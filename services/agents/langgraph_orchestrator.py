@@ -62,7 +62,7 @@ def _build_graph():
     def planner_node(state: InvestigationState) -> Dict[str, Any]:
         """Decompose investigation into sub-tasks."""
         risk = state["risk_score"]
-        tx = state["transaction"]
+        state["transaction"]
         plan = []
 
         plan.append("verify_metadata")
@@ -377,7 +377,7 @@ def _build_graph():
     def decision_node(state: InvestigationState) -> Dict[str, Any]:
         """Final verdict determination."""
         risk = state["risk_score"]
-        findings_count = len(state["findings"])
+        len(state["findings"])
         evidence_count = len(state["evidence"])
 
         if risk > 0.9:
