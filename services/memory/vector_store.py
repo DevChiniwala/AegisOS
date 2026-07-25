@@ -1,5 +1,7 @@
+from typing import Any, Dict, List, Tuple
+
 import numpy as np
-from typing import Dict, List, Tuple, Any
+
 
 class VectorMemoryStore:
     def __init__(self):

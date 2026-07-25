@@ -1,5 +1,6 @@
 """aegis status — Check system health."""
 import time
+
 import typer
 
 app = typer.Typer()
@@ -12,6 +13,7 @@ def status(
 ):
     """Check the health of all AegisOS services."""
     import httpx
+
     from apps.cli.output import console, print_status_table
 
     services = []

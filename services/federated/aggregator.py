@@ -10,8 +10,8 @@ Security features:
 - Convergence tracking across rounds
 """
 
-from typing import Dict, Any, List, Optional
 from dataclasses import dataclass, field
+from typing import Any, Dict, List, Optional
 
 from core.utils.logging import get_logger
 

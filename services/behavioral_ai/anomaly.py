@@ -1,10 +1,11 @@
 """
 Behavioral Anomaly Detector.
 """
-from typing import Tuple, List
-import math
+from typing import List, Tuple
+
 from core.schemas.transaction import TransactionCreate
 from services.behavioral_ai.profiles import BehaviorProfile
+
 
 class BehavioralDeviation:
     def __init__(self, dimension: str, score: float, description: str, severity: str):

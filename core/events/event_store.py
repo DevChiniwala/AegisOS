@@ -6,10 +6,10 @@ State is reconstructed by replaying the event stream.
 """
 import json
 import threading
-from typing import Callable, Dict, List, Optional
 from pathlib import Path
+from typing import Callable, Dict, List, Optional
 
-from core.events.models import InvestigationEvent, EventType
+from core.events.models import EventType, InvestigationEvent
 from core.utils.logging import get_logger
 
 logger = get_logger(__name__)

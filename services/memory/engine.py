@@ -1,11 +1,13 @@
 import hashlib
 import json
 import logging
-from typing import Dict, Any, List
-from .vector_store import VectorMemoryStore
-from .knowledge_graph import FraudKnowledgeGraph
-from .case_store import CaseStore
+from typing import Any, Dict, List
+
 from core.schemas.investigation import InvestigationCase
+
+from .case_store import CaseStore
+from .knowledge_graph import FraudKnowledgeGraph
+from .vector_store import VectorMemoryStore
 
 logger = logging.getLogger(__name__)
 

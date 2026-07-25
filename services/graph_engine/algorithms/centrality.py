@@ -1,5 +1,7 @@
-import networkx as nx
 from typing import Dict, List, Tuple
+
+import networkx as nx
+
 
 class CentralityAnalyzer:
     def degree_centrality(self, graph: nx.Graph, entity_id: str) -> float:

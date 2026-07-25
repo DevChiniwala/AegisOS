@@ -1,9 +1,11 @@
 """Narrative Generator Agent — Produces SAR reports and executive summaries."""
 import uuid
-from ..base import BaseAgent, InvestigationContext
+
 from core.schemas.investigation import Finding
 from core.utils.helpers import utc_now
 from services.agents.llm_factory import get_llm
+
+from ..base import BaseAgent, InvestigationContext
 
 
 class NarrativeGeneratorAgent(BaseAgent):

@@ -8,7 +8,7 @@ LangGraph nodes grouped by investigation phase:
 - Compliance & Decision: compliance → recommendation → narrative → reflector → decision
 """
 
-from typing import Dict, Any, List
+from typing import Any, Dict, List
 
 from temporalio import activity
 
@@ -27,7 +27,7 @@ async def run_triage_agents(
     """Execute triage sub-graph: planner → triage → entity_resolution → graph_analysis."""
     activity.heartbeat("starting triage phase")
 
-    from services.agents.langgraph_orchestrator import build_triage_subgraph, InvestigationState
+    from services.agents.langgraph_orchestrator import InvestigationState, build_triage_subgraph
 
     subgraph = build_triage_subgraph()
     if subgraph is None:
@@ -76,7 +76,7 @@ async def run_deep_investigation(
     """Execute deep investigation: timeline → behavior → risk_assessment → root_cause."""
     activity.heartbeat("starting deep investigation")
 
-    from services.agents.langgraph_orchestrator import build_deep_subgraph, InvestigationState
+    from services.agents.langgraph_orchestrator import InvestigationState, build_deep_subgraph
 
     subgraph = build_deep_subgraph()
     if subgraph is None:
@@ -126,7 +126,7 @@ async def run_compliance_and_decision(
     """Execute compliance & decision: compliance → recommendation → narrative → reflector → decision."""
     activity.heartbeat("starting compliance and decision phase")
 
-    from services.agents.langgraph_orchestrator import build_decision_subgraph, InvestigationState
+    from services.agents.langgraph_orchestrator import InvestigationState, build_decision_subgraph
 
     subgraph = build_decision_subgraph()
     if subgraph is None:

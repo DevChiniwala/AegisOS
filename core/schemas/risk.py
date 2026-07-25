@@ -1,7 +1,9 @@
-from enum import Enum
-from typing import List, Dict, Any, Optional
 from datetime import datetime
+from enum import Enum
+from typing import Any, Dict, List
+
 from pydantic import Field
+
 from .base import BaseSchema
 
 

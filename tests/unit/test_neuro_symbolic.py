@@ -5,20 +5,19 @@ Tests rule evaluation, violation detection, and proof generation
 without requiring Z3 (falls back to deterministic logic).
 """
 
-import pytest
 from services.compliance.neuro_symbolic.engine import (
-    NeuroSymbolicComplianceEngine,
     ComplianceProof,
+    NeuroSymbolicComplianceEngine,
     Violation,
     ViolationType,
 )
 from services.compliance.neuro_symbolic.rules import (
     CTRStructuringRule,
-    VelocityLimitRule,
-    LayeringRule,
-    SanctionsRule,
     JurisdictionRiskRule,
+    LayeringRule,
     RegulatoryRule,
+    SanctionsRule,
+    VelocityLimitRule,
 )
 
 

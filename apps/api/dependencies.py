@@ -1,18 +1,16 @@
 """
 FastAPI Dependencies for Dependency Injection.
 """
-from fastapi import Request
-from core.events import get_event_bus
 from core.database.session import get_session
+from models.base import ModelRegistry
+from services.agents.orchestrator import InvestigationOrchestrator
+from services.behavioral_ai.engine import BehavioralIntelligenceEngine
+from services.explainability.engine import ExplainabilityEngine
 from services.feature_engine.engine import FeatureEngineeringEngine
-from services.risk_engine.engine import RiskScoringEngine
 from services.graph_engine.engine import GraphIntelligenceEngine
 from services.graph_engine.store import NetworkXGraphStore
-from services.behavioral_ai.engine import BehavioralIntelligenceEngine
-from services.agents.orchestrator import InvestigationOrchestrator
 from services.memory.engine import MemoryEngine
-from services.explainability.engine import ExplainabilityEngine
-from models.base import ModelRegistry
+from services.risk_engine.engine import RiskScoringEngine
 
 _feature_engine = None
 _risk_engine = None

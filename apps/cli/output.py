@@ -1,8 +1,8 @@
 """Rich console output utilities for the AegisOS CLI."""
 from rich.console import Console
 from rich.panel import Panel
+from rich.progress import BarColumn, Progress, SpinnerColumn, TextColumn, TimeElapsedColumn
 from rich.table import Table
-from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TimeElapsedColumn
 from rich.text import Text
 from rich.theme import Theme
 

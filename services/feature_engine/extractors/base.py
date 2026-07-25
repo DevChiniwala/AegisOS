@@ -1,8 +1,10 @@
-from typing import Protocol, Dict, Optional, List
 from dataclasses import dataclass
 from datetime import datetime
+from typing import Dict, List, Optional, Protocol
+
+from core.schemas.entity import DeviceFingerprint, MerchantProfile, UserProfile
 from core.schemas.transaction import TransactionCreate
-from core.schemas.entity import UserProfile, MerchantProfile, DeviceFingerprint
+
 
 @dataclass
 class ExtractionContext:

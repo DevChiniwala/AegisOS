@@ -7,6 +7,7 @@ degrade gracefully to heuristic-only mode.
 """
 import os
 from typing import Optional
+
 from core.utils.logging import get_logger
 
 logger = get_logger(__name__)

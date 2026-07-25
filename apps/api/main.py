@@ -1,16 +1,32 @@
 """
 AegisOS API Main Application Entrypoint.
 """
+import time
 from contextlib import asynccontextmanager
+
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-import time
 
+from apps.api.middleware import (
+    AuditMiddleware,
+    RateLimitMiddleware,
+    RequestIDMiddleware,
+    TimingMiddleware,
+)
+from apps.api.routes import (
+    admin,
+    auth,
+    dashboard,
+    entities,
+    graph,
+    investigations,
+    risk,
+    streaming,
+    transactions,
+)
 from core.config.settings import get_settings
 from core.utils.logging import get_logger
-from apps.api.middleware import RequestIDMiddleware, RateLimitMiddleware, AuditMiddleware, TimingMiddleware
-from apps.api.routes import transactions, investigations, entities, graph, risk, auth, admin, streaming, dashboard
 
 logger = get_logger(__name__)
 
@@ -24,12 +40,16 @@ async def lifespan(app: FastAPI):
     """Lifespan context manager for startup and shutdown events."""
     logger.info("Starting AegisOS API...")
 
-    from core.events import get_event_bus, shutdown_event_bus
     from apps.api.dependencies import (
-        get_feature_engine, get_risk_engine, get_graph_engine,
-        get_behavioral_engine, get_investigation_orchestrator,
-        get_memory_engine, get_explainability_engine,
+        get_behavioral_engine,
+        get_explainability_engine,
+        get_feature_engine,
+        get_graph_engine,
+        get_investigation_orchestrator,
+        get_memory_engine,
+        get_risk_engine,
     )
+    from core.events import get_event_bus, shutdown_event_bus
 
     app.state.event_bus = await get_event_bus()
     app.state.feature_engine = get_feature_engine()
@@ -139,5 +159,6 @@ async def readiness_check():
 async def prometheus_metrics():
     """Prometheus metrics endpoint."""
     from fastapi.responses import PlainTextResponse
+
     from core.telemetry import metrics
     return PlainTextResponse(metrics.prometheus_text(), media_type="text/plain")

@@ -1,5 +1,7 @@
+from typing import Dict
+
 import networkx as nx
-from typing import Dict, List
+
 
 class RiskPropagator:
     def propagate(self, graph: nx.Graph, seed_nodes: Dict[str, float], iterations: int = 10, decay: float = 0.85) -> Dict[str, float]:

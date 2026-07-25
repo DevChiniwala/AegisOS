@@ -9,13 +9,19 @@ Implements a StateGraph with:
 - Streaming execution with astream_events()
 - Checkpointing via MemorySaver for crash recovery
 """
-from typing import TypedDict, List, Dict, Any, Optional, Annotated
 import operator
+from typing import Annotated, Any, Dict, List, TypedDict
+
+from core.schemas.investigation import (
+    CasePriority,
+    CaseStatus,
+    Finding,
+    InvestigationCase,
+    TimelineEvent,
+)
 from core.schemas.transaction import TransactionCreate
-from core.schemas.investigation import InvestigationCase, CaseStatus, CasePriority, TimelineEvent, Finding
-from core.utils.helpers import utc_now, generate_id
+from core.utils.helpers import generate_id
 from core.utils.logging import get_logger
-from services.agents.llm_factory import get_llm, is_llm_available
 from services.agents.model_router import get_routed_llm
 
 logger = get_logger(__name__)
@@ -42,7 +48,7 @@ class InvestigationState(TypedDict):
 def _build_graph():
     """Build the 12-agent LangGraph StateGraph."""
     try:
-        from langgraph.graph import StateGraph, END
+        from langgraph.graph import END, StateGraph
     except ImportError:
         logger.info("langgraph not installed — using fallback orchestrator")
         return None
@@ -476,7 +482,7 @@ def _template_narrative(tx: Dict, risk: float, findings_count: int) -> str:
 def build_triage_subgraph():
     """Build triage sub-graph for Temporal activity: planner → triage → entity_resolution → graph_analysis."""
     try:
-        from langgraph.graph import StateGraph, END
+        from langgraph.graph import END, StateGraph
     except ImportError:
         return None
 
@@ -490,7 +496,7 @@ def build_triage_subgraph():
 def build_deep_subgraph():
     """Build deep investigation sub-graph: timeline → behavior → risk_assessment → root_cause."""
     try:
-        from langgraph.graph import StateGraph, END
+        from langgraph.graph import END, StateGraph
     except ImportError:
         return None
     return _build_subgraph_deep()
@@ -499,7 +505,7 @@ def build_deep_subgraph():
 def build_decision_subgraph():
     """Build decision sub-graph: compliance → recommendation → narrative → reflector → decision."""
     try:
-        from langgraph.graph import StateGraph, END
+        from langgraph.graph import END, StateGraph
     except ImportError:
         return None
     return _build_subgraph_decision()
@@ -508,7 +514,7 @@ def build_decision_subgraph():
 def _build_subgraph_triage():
     """Internal: build the triage-phase StateGraph."""
     try:
-        from langgraph.graph import StateGraph, END
+        from langgraph.graph import END, StateGraph
     except ImportError:
         return None
 
@@ -519,7 +525,7 @@ def _build_subgraph_triage():
 def _build_subgraph_deep():
     """Internal: build the deep-investigation StateGraph."""
     try:
-        from langgraph.graph import StateGraph, END
+        from langgraph.graph import END, StateGraph
     except ImportError:
         return None
 
@@ -530,7 +536,7 @@ def _build_subgraph_deep():
 def _build_subgraph_decision():
     """Internal: build the compliance/decision StateGraph."""
     try:
-        from langgraph.graph import StateGraph, END
+        from langgraph.graph import END, StateGraph
     except ImportError:
         return None
 

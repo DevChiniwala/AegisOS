@@ -1,11 +1,11 @@
 """
 Streaming endpoints (WebSockets) — Real-time transaction scoring and investigation feeds.
 """
-import asyncio
 import json
-from fastapi import APIRouter, WebSocket, WebSocketDisconnect, Request
-from fastapi.responses import StreamingResponse
 from typing import List
+
+from fastapi import APIRouter, Request, WebSocket, WebSocketDisconnect
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 
 from core.utils.logging import get_logger
@@ -126,8 +126,8 @@ class InvestigationStreamRequest(BaseModel):
 @router.post("/investigations/stream")
 async def stream_investigation(body: InvestigationStreamRequest, request: Request):
     """SSE endpoint for streaming investigation agent activity."""
-    from services.agents.langgraph_orchestrator import LangGraphOrchestrator
     from core.schemas.transaction import TransactionCreate
+    from services.agents.langgraph_orchestrator import LangGraphOrchestrator
 
     orchestrator = LangGraphOrchestrator()
     if not orchestrator.available:

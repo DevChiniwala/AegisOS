@@ -1,7 +1,10 @@
 from enum import Enum
-from typing import List, Callable, Any
+from typing import Callable, List
+
 from fastapi import Depends
+
 from core.exceptions import AuthorizationError
+
 from .auth import get_current_user
 
 

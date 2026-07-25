@@ -1,8 +1,15 @@
-from datetime import datetime
-from sqlalchemy import String, Float, DateTime, Boolean, JSON, ForeignKey, Enum as SQLEnum, Index
+from datetime import datetime, timezone
+
+from sqlalchemy import JSON, DateTime, Float, ForeignKey, Index, String
+from sqlalchemy import Enum as SQLEnum
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from core.schemas.transaction import TransactionStatus, TransactionType
+
 from core.schemas.investigation import CaseStatus
+from core.schemas.transaction import TransactionStatus, TransactionType
+
+
+def utc_now():
+    return datetime.now(timezone.utc)
 
 
 class Base(DeclarativeBase):
@@ -16,7 +23,7 @@ class TransactionRecord(Base):
     type: Mapped[TransactionType] = mapped_column(SQLEnum(TransactionType))
     amount: Mapped[float] = mapped_column(Float)
     currency: Mapped[str] = mapped_column(String)
-    timestamp: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    timestamp: Mapped[datetime] = mapped_column(DateTime, default=utc_now)
     sender_id: Mapped[str] = mapped_column(String, index=True)
     receiver_id: Mapped[str] = mapped_column(String, index=True)
     status: Mapped[TransactionStatus] = mapped_column(SQLEnum(TransactionStatus), default=TransactionStatus.PENDING)
@@ -33,7 +40,7 @@ class UserRecord(Base):
     id: Mapped[str] = mapped_column(String, primary_key=True)
     name: Mapped[str] = mapped_column(String)
     email: Mapped[str] = mapped_column(String, index=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=utc_now)
 
 
 class MerchantRecord(Base):
@@ -58,7 +65,7 @@ class AlertRecord(Base):
     id: Mapped[str] = mapped_column(String, primary_key=True)
     transaction_id: Mapped[str] = mapped_column(String, ForeignKey("transactions.id"))
     risk_score: Mapped[float] = mapped_column(Float)
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=utc_now)
 
 
 class InvestigationCaseRecord(Base):
@@ -67,7 +74,7 @@ class InvestigationCaseRecord(Base):
     id: Mapped[str] = mapped_column(String, primary_key=True)
     status: Mapped[CaseStatus] = mapped_column(SQLEnum(CaseStatus))
     assigned_to: Mapped[str] = mapped_column(String, nullable=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=utc_now)
 
 
 class AuditLogRecord(Base):
@@ -76,4 +83,20 @@ class AuditLogRecord(Base):
     id: Mapped[str] = mapped_column(String, primary_key=True)
     user_id: Mapped[str] = mapped_column(String)
     action: Mapped[str] = mapped_column(String)
-    timestamp: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    timestamp: Mapped[datetime] = mapped_column(DateTime, default=utc_now)
+
+
+class EventStoreRecord(Base):
+    __tablename__ = "event_store"
+
+    sequence_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    event_id: Mapped[str] = mapped_column(String, unique=True, index=True)
+    aggregate_id: Mapped[str] = mapped_column(String, index=True)
+    event_type: Mapped[str] = mapped_column(String, index=True)
+    timestamp: Mapped[datetime] = mapped_column(DateTime, default=utc_now)
+    payload_json: Mapped[dict] = mapped_column(JSON)
+    agent_name: Mapped[str] = mapped_column(String, nullable=True)
+
+    __table_args__ = (
+        Index('idx_aggregate_time', 'aggregate_id', 'timestamp'),
+    )

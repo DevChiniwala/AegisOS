@@ -14,6 +14,7 @@ def demo(
     import sys
     import time
     from pathlib import Path
+
     from apps.cli.output import console, print_banner
 
     print_banner()
@@ -21,8 +22,8 @@ def demo(
 
     # Step 1: Generate synthetic data
     console.print("[info]Step 1/4:[/info] Generating synthetic data...")
+
     from apps.cli.commands.generate import generate
-    from click.testing import CliRunner
 
     generate(
         users=500,

@@ -1,9 +1,10 @@
 """
 Investigation routes — wired to orchestrator.
 """
+
 from fastapi import APIRouter, Request
-from typing import List
-from core.schemas.investigation import InvestigationCase, CaseStatus, CasePriority
+
+from core.schemas.investigation import CaseStatus
 from core.schemas.transaction import TransactionCreate
 
 router = APIRouter()

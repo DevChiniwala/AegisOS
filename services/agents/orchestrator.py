@@ -1,23 +1,23 @@
-from typing import List, Dict, Any, Union
-import uuid
 import asyncio
+import uuid
+from typing import Union
 
-from core.schemas.investigation import InvestigationCase, CaseStatus, TimelineEvent, Finding, CasePriority
-from core.schemas.transaction import TransactionCreate
+from core.schemas.investigation import CasePriority, CaseStatus, InvestigationCase, TimelineEvent
 from core.schemas.risk import RiskExplanation
+from core.schemas.transaction import TransactionCreate
 from services.risk_engine.engine import ScoringResult
-from core.utils.helpers import utc_now
 
-from .base import InvestigationContext
-from .agents.transaction_investigator import TransactionInvestigator
 from .agents.behavior_analyst import BehaviorAnalyst
-from .agents.graph_detective import GraphDetective
-from .agents.evidence_collector import EvidenceCollector
-from .agents.risk_assessor import RiskAssessor
 from .agents.compliance_officer import ComplianceOfficer
 from .agents.decision_agent import DecisionAgent
-from .agents.supervisor import SupervisorAgent
+from .agents.evidence_collector import EvidenceCollector
+from .agents.graph_detective import GraphDetective
 from .agents.report_generator import ReportGenerator
+from .agents.risk_assessor import RiskAssessor
+from .agents.supervisor import SupervisorAgent
+from .agents.transaction_investigator import TransactionInvestigator
+from .base import InvestigationContext
+
 
 class InvestigationOrchestrator:
     def __init__(self):

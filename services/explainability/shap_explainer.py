@@ -1,6 +1,9 @@
+from typing import Any, Dict, List
+
 import numpy as np
+
 from core.schemas.risk import FeatureImportance
-from typing import Dict, List, Any
+
 try:
     import shap
 except ImportError:

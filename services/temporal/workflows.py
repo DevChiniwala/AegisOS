@@ -10,7 +10,7 @@ The InvestigationWorkflow coordinates LangGraph agent execution with:
 
 from dataclasses import dataclass, field
 from datetime import timedelta
-from typing import Dict, Any, List, Optional
+from typing import Any, Dict, List, Optional
 
 from temporalio import workflow
 from temporalio.common import RetryPolicy

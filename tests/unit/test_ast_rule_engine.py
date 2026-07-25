@@ -3,10 +3,11 @@ Tests for the safe AST-based expression evaluator in the rule engine.
 Verifies that valid rule conditions pass while malicious expressions are rejected.
 """
 import pytest
+
 from services.risk_engine.rules.rule_engine import (
+    RuleEngine,
     SafeExpressionEvaluator,
     UnsafeExpressionError,
-    RuleEngine,
 )
 
 

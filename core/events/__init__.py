@@ -1,8 +1,10 @@
 import logging
+
+from core.config.settings import get_settings
+
 from .bus import EventBus, EventHandler
 from .memory_bus import InMemoryEventBus
 from .redis_bus import RedisEventBus
-from core.config.settings import get_settings
 
 logger = logging.getLogger(__name__)
 

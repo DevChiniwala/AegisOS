@@ -1,8 +1,10 @@
 """Root Cause Agent — Identifies why fraud occurred."""
 import uuid
-from ..base import BaseAgent, InvestigationContext
+
 from core.schemas.investigation import Finding
 from core.utils.helpers import utc_now
+
+from ..base import BaseAgent, InvestigationContext
 
 
 class RootCauseAgent(BaseAgent):

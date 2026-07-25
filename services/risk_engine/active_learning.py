@@ -12,11 +12,11 @@ Feedback types:
 - Confirmed: Model flagged, analyst agreed → model correct (low learning value)
 """
 
-from typing import Dict, Any, List, Optional
+import time
+from collections import deque
 from dataclasses import dataclass, field
 from enum import Enum
-from collections import deque
-import time
+from typing import Any, Dict, List, Optional
 
 from core.utils.logging import get_logger
 

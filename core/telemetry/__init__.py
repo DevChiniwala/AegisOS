@@ -9,6 +9,7 @@ Provides:
 import os
 import time
 from typing import Optional
+
 from core.utils.logging import get_logger
 
 logger = get_logger(__name__)
@@ -21,8 +22,8 @@ def setup_tracing(service_name: str = "aegisos-api") -> Optional[object]:
     global _tracer
     try:
         from opentelemetry import trace
-        from opentelemetry.sdk.trace import TracerProvider
         from opentelemetry.sdk.resources import Resource
+        from opentelemetry.sdk.trace import TracerProvider
         from opentelemetry.sdk.trace.export import (
             BatchSpanProcessor,
             ConsoleSpanExporter,

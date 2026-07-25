@@ -2,6 +2,7 @@
 Auth endpoints.
 """
 from fastapi import APIRouter, Depends
+
 from core.security.auth import get_current_user
 
 router = APIRouter()

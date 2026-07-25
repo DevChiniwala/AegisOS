@@ -1,10 +1,12 @@
 from datetime import datetime, timedelta, timezone
-from typing import Any, Dict, Optional, Set
+from typing import Optional, Set
 from uuid import uuid4
-from jose import jwt, JWTError
-from passlib.context import CryptContext
+
 from fastapi import Depends
 from fastapi.security import OAuth2PasswordBearer
+from jose import JWTError, jwt
+from passlib.context import CryptContext
+
 from core.config.settings import get_settings
 from core.exceptions import AuthenticationError
 

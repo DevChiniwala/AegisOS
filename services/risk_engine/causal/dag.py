@@ -10,8 +10,8 @@ Design: Hybrid approach
 - LLM augmentation proposes new edges validated by domain constraints
 """
 
-from typing import List, Tuple, Set, Optional
-from dataclasses import dataclass, field
+from dataclasses import dataclass
+from typing import List, Set, Tuple
 
 from core.utils.logging import get_logger
 

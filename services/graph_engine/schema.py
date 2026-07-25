@@ -1,7 +1,9 @@
-from enum import Enum
-from pydantic import BaseModel, Field
-from typing import Dict, Any, Optional
 from datetime import datetime
+from enum import Enum
+from typing import Any, Dict
+
+from pydantic import BaseModel, Field
+
 
 class NodeType(str, Enum):
     USER = "USER"

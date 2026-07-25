@@ -1,9 +1,12 @@
 import asyncio
-from typing import Dict, List, Set
 from collections import defaultdict
-from core.schemas.events import EventEnvelope, EventType
-from .bus import EventBus, EventHandler
+from typing import Dict, List, Set
+
 import structlog
+
+from core.schemas.events import EventEnvelope, EventType
+
+from .bus import EventHandler
 
 logger = structlog.get_logger(__name__)
 

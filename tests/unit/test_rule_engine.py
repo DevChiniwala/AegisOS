@@ -1,7 +1,7 @@
 """Tests for the rule engine eval() context fix."""
-import pytest
 from unittest.mock import MagicMock
-from services.risk_engine.rules.rule_engine import RuleEngine, RuleResult
+
+from services.risk_engine.rules.rule_engine import RuleEngine
 
 
 class TestRuleEngine:

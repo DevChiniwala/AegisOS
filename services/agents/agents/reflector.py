@@ -1,8 +1,10 @@
 """Reflector Agent — Validates reasoning quality and checks for gaps."""
 import uuid
-from ..base import BaseAgent, InvestigationContext
+
 from core.schemas.investigation import Finding
 from core.utils.helpers import utc_now
+
+from ..base import BaseAgent, InvestigationContext
 
 
 class ReflectorAgent(BaseAgent):

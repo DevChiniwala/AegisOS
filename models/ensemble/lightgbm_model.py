@@ -1,6 +1,7 @@
 import logging
+from typing import Any, Dict, List
+
 import joblib
-from typing import Dict, List, Any
 
 try:
     import lightgbm as lgb

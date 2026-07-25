@@ -1,8 +1,10 @@
 from core.schemas.risk import RiskExplanation
-from .shap_explainer import SHAPExplainer
+
 from .counterfactual import CounterfactualExplainer
 from .narrator import ExplanationNarrator
+from .shap_explainer import SHAPExplainer
 from .similar_cases import SimilarCaseFinder
+
 
 class ExplainabilityEngine:
     def __init__(self):

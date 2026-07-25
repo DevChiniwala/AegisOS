@@ -1,5 +1,6 @@
 import hashlib
 from typing import Dict
+
 from core.schemas.transaction import TransactionCreate
 from services.feature_engine.extractors.base import ExtractionContext
 

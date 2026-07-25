@@ -1,14 +1,14 @@
 from .settings import (
     AegisSettings,
     DatabaseSettings,
-    RedisSettings,
+    FeatureFlagsSettings,
     KafkaSettings,
+    LLMSettings,
+    MinioSettings,
     Neo4jSettings,
     QdrantSettings,
-    MinioSettings,
+    RedisSettings,
     SecuritySettings,
-    LLMSettings,
-    FeatureFlagsSettings,
     get_settings,
 )
 

@@ -1,12 +1,13 @@
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple
+
+from core.schemas.risk import RiskLevel, RiskVerdict
 from core.schemas.transaction import TransactionCreate
-from core.schemas.risk import RiskVerdict, RiskLevel
-from core.utils.logging import get_logger
 from core.utils.helpers import Timer
-from services.risk_engine.rules.rule_engine import RuleEngine, RuleResult
-from services.risk_engine.ensemble import AdaptiveEnsemble
+from core.utils.logging import get_logger
 from models.base import FraudModel
+from services.risk_engine.ensemble import AdaptiveEnsemble
+from services.risk_engine.rules.rule_engine import RuleEngine, RuleResult
 
 logger = get_logger(__name__)
 

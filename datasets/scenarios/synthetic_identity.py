@@ -2,8 +2,10 @@
 Synthetic Identity scenario generator.
 """
 from typing import List
+
 from core.schemas.transaction import TransactionCreate, TransactionType
 from core.utils.helpers import utc_now
+
 
 def generate_synthetic_identity_scenario(new_user_id: str) -> List[TransactionCreate]:
     txs = []

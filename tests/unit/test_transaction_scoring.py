@@ -2,12 +2,12 @@
 End-to-end test for the transaction scoring pipeline.
 Verifies: FeatureEngine -> RiskScoringEngine -> ScoringResult
 """
-import pytest
 from unittest.mock import MagicMock
+
+from core.schemas.risk import RiskLevel, RiskVerdict
+from models.base import ModelRegistry
 from services.feature_engine.engine import FeatureEngineeringEngine
 from services.risk_engine.engine import RiskScoringEngine, ScoringResult
-from models.base import ModelRegistry
-from core.schemas.risk import RiskLevel, RiskVerdict
 
 
 class TestScoringPipeline:

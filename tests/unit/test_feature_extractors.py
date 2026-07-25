@@ -1,9 +1,14 @@
 """Tests for deterministic feature encoding."""
-import pytest
 from unittest.mock import MagicMock
-from services.feature_engine.extractors.transaction_features import TransactionFeatureExtractor, _stable_encode
+
 from services.feature_engine.extractors.device_features import DeviceFeatureExtractor
-from services.feature_engine.extractors.device_features import _stable_encode as _device_stable_encode
+from services.feature_engine.extractors.device_features import (
+    _stable_encode as _device_stable_encode,
+)
+from services.feature_engine.extractors.transaction_features import (
+    TransactionFeatureExtractor,
+    _stable_encode,
+)
 
 
 class TestStableEncode:

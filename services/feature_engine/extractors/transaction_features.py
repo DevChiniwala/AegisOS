@@ -1,7 +1,8 @@
-import math
 import hashlib
+import math
 from typing import Dict
-from core.schemas.transaction import TransactionCreate, TransactionType
+
+from core.schemas.transaction import TransactionCreate
 from services.feature_engine.extractors.base import ExtractionContext
 
 

@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 
+
 class TemporalGraphNetwork(nn.Module):
     """
     Simplified Temporal Graph Network for Node Memory updates.

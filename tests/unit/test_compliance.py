@@ -1,8 +1,8 @@
 """Tests for compliance engine fixes."""
-import pytest
 from unittest.mock import MagicMock
+
+from core.schemas.investigation import CasePriority, CaseStatus
 from services.compliance.engine import ComplianceEngine
-from core.schemas.investigation import CaseStatus, CasePriority
 
 
 class TestComplianceEngine:

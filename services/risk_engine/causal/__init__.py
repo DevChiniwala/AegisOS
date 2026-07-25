@@ -9,8 +9,8 @@ but doesn't cause it — account compromise causes both).
 Requires: pip install aegisos[causal]
 """
 
-from services.risk_engine.causal.engine import CausalRiskEngine, CausalEffect
 from services.risk_engine.causal.dag import FinancialCausalDAG
+from services.risk_engine.causal.engine import CausalEffect, CausalRiskEngine
 
 __all__ = [
     "CausalRiskEngine",

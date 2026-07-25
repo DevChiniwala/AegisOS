@@ -1,4 +1,5 @@
-from typing import Protocol, Callable, Awaitable, Any
+from typing import Awaitable, Callable, Protocol
+
 from core.schemas.events import EventEnvelope, EventType
 
 EventHandler = Callable[[EventEnvelope], Awaitable[None]]

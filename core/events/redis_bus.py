@@ -1,11 +1,14 @@
-import json
 import asyncio
+import json
 from typing import Optional
-from redis.asyncio import Redis
-from core.schemas.events import EventEnvelope, EventType
-from core.exceptions import EventBusError
-from .bus import EventBus, EventHandler
+
 import structlog
+from redis.asyncio import Redis
+
+from core.exceptions import EventBusError
+from core.schemas.events import EventEnvelope, EventType
+
+from .bus import EventHandler
 
 logger = structlog.get_logger(__name__)
 
@@ -49,7 +52,7 @@ class RedisEventBus:
             try:
                 if self.redis:
                     await self.redis.xgroup_create(stream_name, self.group_name, id="0", mkstream=True)
-            except Exception as e:
+            except Exception:
                 # Group might already exist, which is fine
                 pass
                 

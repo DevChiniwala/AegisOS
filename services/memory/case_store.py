@@ -1,6 +1,8 @@
-from typing import Dict, List, Any, Optional
-from core.schemas.investigation import InvestigationCase
 import uuid
+from typing import Any, Dict, List, Optional
+
+from core.schemas.investigation import InvestigationCase
+
 
 class CaseStore:
     def __init__(self):

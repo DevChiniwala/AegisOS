@@ -1,6 +1,6 @@
 """Tests for feature store timezone fix."""
-import pytest
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timedelta, timezone
+
 from services.feature_engine.store import FeatureStore
 
 

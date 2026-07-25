@@ -5,10 +5,9 @@ Tests DAG structure, causal path detection, feature weight computation,
 and effect estimation (DAG-based fallback without DoWhy).
 """
 
-import pytest
 
-from services.risk_engine.causal.dag import FinancialCausalDAG, CausalEdge
-from services.risk_engine.causal.engine import CausalRiskEngine, CausalEffect, CausalWeights
+from services.risk_engine.causal.dag import FinancialCausalDAG
+from services.risk_engine.causal.engine import CausalEffect, CausalRiskEngine, CausalWeights
 
 
 class TestFinancialCausalDAG:

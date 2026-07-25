@@ -5,13 +5,12 @@ Tests transaction processing, coordination detection, and temporal
 pattern scoring without requiring full PyTorch (tests heuristic logic).
 """
 
-import pytest
 import time
 
 from services.graph_engine.streaming_tgn import (
+    CoordinationScore,
     StreamingTGNService,
     TemporalEvent,
-    CoordinationScore,
 )
 
 

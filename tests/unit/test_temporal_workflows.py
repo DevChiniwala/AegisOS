@@ -7,11 +7,8 @@ The workflow/activity logic is tested without requiring the Temporal SDK
 """
 
 import sys
-import pytest
-from unittest.mock import patch, MagicMock
-from dataclasses import asdict
-
 import types
+from unittest.mock import MagicMock
 
 temporalio_mod = types.ModuleType("temporalio")
 temporalio_workflow_mod = types.ModuleType("temporalio.workflow")
@@ -45,16 +42,16 @@ sys.modules["temporalio.common"] = temporalio_common_mod
 sys.modules["temporalio.client"] = temporalio_client_mod
 sys.modules["temporalio.worker"] = temporalio_worker_mod
 
+from services.temporal.activities import (
+    _fallback_decision,
+    _fallback_deep,
+    _fallback_triage,
+)
 from services.temporal.workflows import (
-    InvestigationWorkflow,
+    TASK_QUEUE,
     InvestigationInput,
     InvestigationResult,
-    TASK_QUEUE,
-)
-from services.temporal.activities import (
-    _fallback_triage,
-    _fallback_deep,
-    _fallback_decision,
+    InvestigationWorkflow,
 )
 
 

@@ -10,10 +10,10 @@ When Z3 is unavailable, rules fall back to deterministic Python logic
 """
 
 from abc import ABC, abstractmethod
-from typing import Dict, Any, List, Optional
+from typing import Any, Dict, List, Optional
 
-from services.compliance.neuro_symbolic.engine import Violation, ViolationType
 from core.utils.logging import get_logger
+from services.compliance.neuro_symbolic.engine import Violation, ViolationType
 
 logger = get_logger(__name__)
 

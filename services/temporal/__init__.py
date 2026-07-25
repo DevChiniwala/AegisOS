@@ -12,8 +12,12 @@ Requires: pip install aegisos[temporal]
 """
 
 try:
-    from services.temporal.workflows import InvestigationWorkflow, InvestigationInput, InvestigationResult
     from services.temporal.client import TemporalInvestigationClient
+    from services.temporal.workflows import (
+        InvestigationInput,
+        InvestigationResult,
+        InvestigationWorkflow,
+    )
 
     __all__ = [
         "InvestigationWorkflow",

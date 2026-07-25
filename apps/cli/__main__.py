@@ -11,11 +11,11 @@ Usage:
 """
 import typer
 
-from apps.cli.commands.serve import app as serve_app
-from apps.cli.commands.score import app as score_app
-from apps.cli.commands.investigate import app as investigate_app
-from apps.cli.commands.generate import app as generate_app
 from apps.cli.commands.demo import app as demo_app
+from apps.cli.commands.generate import app as generate_app
+from apps.cli.commands.investigate import app as investigate_app
+from apps.cli.commands.score import app as score_app
+from apps.cli.commands.serve import app as serve_app
 from apps.cli.commands.status import app as status_app
 
 app = typer.Typer(

@@ -1,8 +1,9 @@
 """Base agent infrastructure with tool-calling capability."""
 from abc import ABC, abstractmethod
-from typing import Any, Callable, Awaitable, Dict, List, Optional
 from dataclasses import dataclass, field
-from core.schemas.investigation import InvestigationCase, Finding
+from typing import Any, Awaitable, Callable, Dict, List, Optional
+
+from core.schemas.investigation import Finding, InvestigationCase
 from core.schemas.transaction import TransactionCreate
 
 

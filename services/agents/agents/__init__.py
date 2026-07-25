@@ -1,15 +1,15 @@
-from .transaction_investigator import TransactionInvestigator
-from .graph_detective import GraphDetective
 from .behavior_analyst import BehaviorAnalyst
 from .compliance_officer import ComplianceOfficer
-from .evidence_collector import EvidenceCollector
-from .planner import PlannerAgent
 from .entity_resolver import EntityResolverAgent
-from .timeline_reconstructor import TimelineReconstructorAgent
+from .evidence_collector import EvidenceCollector
+from .graph_detective import GraphDetective
 from .narrative_generator import NarrativeGeneratorAgent
-from .root_cause_agent import RootCauseAgent
+from .planner import PlannerAgent
 from .recommendation_agent import RecommendationAgent
 from .reflector import ReflectorAgent
+from .root_cause_agent import RootCauseAgent
+from .timeline_reconstructor import TimelineReconstructorAgent
+from .transaction_investigator import TransactionInvestigator
 
 ALL_AGENTS = [
     TransactionInvestigator,

@@ -4,11 +4,11 @@ Event Projections — Materializers that reconstruct state from event streams.
 Projections transform the raw event stream into useful read models
 (current case state, agent timeline, evidence summary, etc.)
 """
-from typing import Any, Dict, List, Optional
 from dataclasses import dataclass, field
 from datetime import datetime
+from typing import Any, Dict, List, Optional
 
-from core.events.models import InvestigationEvent, EventType
+from core.events.models import EventType, InvestigationEvent
 
 
 @dataclass

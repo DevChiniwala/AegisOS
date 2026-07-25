@@ -5,9 +5,13 @@ Tests DP mechanism, trainer, and aggregator components
 without requiring NVIDIA FLARE (tests standalone logic).
 """
 
-import pytest
 import numpy as np
+import pytest
 
+from services.federated.aggregator import (
+    ClientUpdate,
+    SecureFedAvgAggregator,
+)
 from services.federated.dp_mechanism import (
     AdaptiveDPMechanism,
     PrivacyBudget,
@@ -17,11 +21,6 @@ from services.federated.trainer import (
     AegisFederatedTrainer,
     TrainingConfig,
     TrainingResult,
-)
-from services.federated.aggregator import (
-    SecureFedAvgAggregator,
-    ClientUpdate,
-    AggregationResult,
 )
 
 

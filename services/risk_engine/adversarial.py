@@ -12,9 +12,8 @@ Techniques:
 - Structuring pattern detection (amounts just below thresholds)
 """
 
-from typing import Dict, Any, List, Optional
 from dataclasses import dataclass, field
-import math
+from typing import Dict, List, Optional
 
 from core.utils.logging import get_logger
 

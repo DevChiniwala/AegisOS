@@ -3,9 +3,11 @@ Compliance Engine.
 """
 from dataclasses import dataclass
 from typing import List
-from core.schemas.transaction import TransactionCreate
+
 from core.schemas.entity import UserProfile
-from core.schemas.investigation import InvestigationCase, CaseStatus, CasePriority
+from core.schemas.investigation import CasePriority, CaseStatus, InvestigationCase
+from core.schemas.transaction import TransactionCreate
+
 
 @dataclass
 class ComplianceResult:

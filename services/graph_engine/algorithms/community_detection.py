@@ -1,6 +1,8 @@
-import networkx as nx
-import community as community_louvain
 from typing import List, Set
+
+import community as community_louvain
+import networkx as nx
+
 
 class CommunityDetector:
     def detect_communities(self, graph: nx.Graph, method: str = 'louvain') -> List[Set[str]]:

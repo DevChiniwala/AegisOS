@@ -15,14 +15,14 @@ def generate(
     """Generate synthetic transaction data for testing."""
     from apps.cli.output import console, get_progress
 
-    console.print(f"[header]Generating synthetic data[/header]")
+    console.print("[header]Generating synthetic data[/header]")
     console.print(f"  Users: {users} | Transactions: {transactions} | Fraud rate: {fraud_rate:.1%}\n")
 
     import json
     import random
+    from datetime import datetime, timedelta
     from pathlib import Path
     from uuid import uuid4
-    from datetime import datetime, timedelta
 
     random.seed(seed)
     output_dir = Path(output)

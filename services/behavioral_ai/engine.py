@@ -1,12 +1,20 @@
 """
 Behavioral Intelligence Engine.
 """
-from typing import Dict, List, Optional
+from typing import Dict, List
+
 from core.schemas.transaction import TransactionCreate
-from core.utils.logging import get_logger
-from services.behavioral_ai.profiles import BehaviorProfile, SpendingProfile, TemporalProfile, GeoProfile, DeviceProfile, MerchantBehaviorProfile
-from services.behavioral_ai.anomaly import BehavioralAnomalyDetector, BehavioralDeviation
 from core.utils.helpers import utc_now
+from core.utils.logging import get_logger
+from services.behavioral_ai.anomaly import BehavioralAnomalyDetector, BehavioralDeviation
+from services.behavioral_ai.profiles import (
+    BehaviorProfile,
+    DeviceProfile,
+    GeoProfile,
+    MerchantBehaviorProfile,
+    SpendingProfile,
+    TemporalProfile,
+)
 
 logger = get_logger(__name__)
 

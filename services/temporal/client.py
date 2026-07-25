@@ -15,16 +15,16 @@ Usage:
     result = await client.get_result(workflow_id)
 """
 
-from typing import Dict, Any, Optional
+from typing import Any, Dict, Optional
 
-from temporalio.client import Client, WorkflowHandle
+from temporalio.client import Client
 
 from core.utils.logging import get_logger
 from services.temporal.workflows import (
-    InvestigationWorkflow,
+    TASK_QUEUE,
     InvestigationInput,
     InvestigationResult,
-    TASK_QUEUE,
+    InvestigationWorkflow,
 )
 
 logger = get_logger(__name__)

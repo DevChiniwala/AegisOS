@@ -1,5 +1,7 @@
-from typing import Dict, List, Any
+from typing import Any, Dict, List
+
 import numpy as np
+
 
 class SimilarCaseFinder:
     def __init__(self):

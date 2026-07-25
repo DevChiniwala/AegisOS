@@ -1,9 +1,11 @@
 import base64
-from cryptography.fernet import Fernet
-from cryptography.hazmat.primitives.kdf.hkdf import HKDF
-from cryptography.hazmat.primitives import hashes
 from typing import Any, Optional
-from sqlalchemy.types import TypeDecorator, String
+
+from cryptography.fernet import Fernet
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.kdf.hkdf import HKDF
+from sqlalchemy.types import String, TypeDecorator
+
 from core.config.settings import get_settings
 
 _cipher_instance: Optional[Fernet] = None

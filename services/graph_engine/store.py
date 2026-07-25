@@ -1,16 +1,18 @@
-from typing import Protocol, List, Dict, Any, Optional
 import re
 import threading
-import networkx as nx
 from datetime import datetime, timezone
+from typing import Any, Dict, List, Optional, Protocol
+
+import networkx as nx
 
 try:
     from neo4j import AsyncGraphDatabase
 except ImportError:
     AsyncGraphDatabase = None
 
-from .schema import GraphNode, GraphEdge, NodeType, EdgeType
 from core.utils.logging import get_logger
+
+from .schema import EdgeType, GraphEdge, GraphNode
 
 logger = get_logger(__name__)
 

@@ -1,9 +1,11 @@
 """
 Stream Producers.
 """
-from typing import Protocol
 import asyncio
+from typing import Protocol
+
 from core.schemas.events import EventEnvelope
+
 
 class EventProducer(Protocol):
     async def produce(self, event: EventEnvelope) -> None:

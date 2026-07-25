@@ -4,8 +4,8 @@ GraphRAG — Hierarchical community summarization over the knowledge graph.
 Combines local (entity-specific) and global (community-level) retrieval
 for comprehensive fraud context.
 """
-from typing import Any, Dict, List, Optional
 from dataclasses import dataclass, field
+from typing import Any, Dict, List, Optional
 
 from core.utils.logging import get_logger
 

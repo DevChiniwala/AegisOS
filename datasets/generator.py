@@ -2,10 +2,12 @@
 Synthetic Data Generator.
 """
 import random
-from typing import List, Dict, Any
-from core.schemas.entity import UserProfile, MerchantProfile, DeviceFingerprint
+from typing import List
+
+from core.schemas.entity import DeviceFingerprint, MerchantProfile, UserProfile
 from core.schemas.transaction import TransactionCreate, TransactionType
-from core.utils.helpers import generate_id, utc_now
+from core.utils.helpers import utc_now
+
 
 class Dataset:
     def __init__(self, users, merchants, devices, transactions):

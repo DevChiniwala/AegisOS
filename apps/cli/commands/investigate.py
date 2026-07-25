@@ -12,7 +12,8 @@ def investigate(
 ):
     """Run a multi-agent investigation on a transaction."""
     import httpx
-    from apps.cli.output import console, get_progress
+
+    from apps.cli.output import console
 
     console.print(f"[header]Investigating transaction: {transaction_id}[/header]\n")
 
@@ -54,6 +55,7 @@ def investigate(
 
 def _print_agent_event(line: str):
     import json
+
     from apps.cli.output import console
 
     try:
@@ -77,6 +79,7 @@ def _print_agent_event(line: str):
 
 def _print_investigation_result(result: dict):
     from rich.panel import Panel
+
     from apps.cli.output import console
 
     verdict = result.get("verdict", "unknown")

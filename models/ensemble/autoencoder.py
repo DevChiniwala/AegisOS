@@ -1,6 +1,8 @@
+from typing import Any, Dict, List
+
 import torch
 import torch.nn as nn
-from typing import Dict, List, Any
+
 
 class AutoencoderNet(nn.Module):
     def __init__(self, input_dim: int):

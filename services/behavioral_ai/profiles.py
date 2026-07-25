@@ -2,7 +2,8 @@
 Behavioral profiles schemas.
 """
 from dataclasses import dataclass, field
-from typing import Set, Dict, Any
+from typing import Any, Dict, Set
+
 
 @dataclass
 class SpendingProfile:

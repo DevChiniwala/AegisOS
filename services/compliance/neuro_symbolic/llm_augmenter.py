@@ -13,8 +13,8 @@ Architecture:
 4. If inconsistent, fall back to conservative (flag for review)
 """
 
-from typing import Dict, Any, Optional
 from dataclasses import dataclass
+from typing import Any, Dict
 
 from core.utils.logging import get_logger
 

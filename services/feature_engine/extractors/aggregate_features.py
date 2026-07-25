@@ -1,7 +1,9 @@
 import math
 from typing import Dict
+
 from core.schemas.transaction import TransactionCreate
 from services.feature_engine.extractors.base import ExtractionContext
+
 
 class AggregateFeatureExtractor:
     def extract(self, transaction: TransactionCreate, context: ExtractionContext) -> Dict[str, float]:

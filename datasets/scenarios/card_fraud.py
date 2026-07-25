@@ -4,6 +4,7 @@ Card fraud scenario generator.
 from core.schemas.transaction import TransactionCreate, TransactionType
 from core.utils.helpers import utc_now
 
+
 def generate_card_fraud_scenario(user_id: str, merchant_id: str) -> TransactionCreate:
     return TransactionCreate(
         type=TransactionType.PURCHASE,

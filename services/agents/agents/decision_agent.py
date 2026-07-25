@@ -1,7 +1,10 @@
-from ..base import BaseAgent, InvestigationContext
+import uuid
+
 from core.schemas.investigation import Finding
 from core.utils.helpers import utc_now
-import uuid
+
+from ..base import BaseAgent, InvestigationContext
+
 
 class DecisionAgent(BaseAgent):
     def __init__(self):

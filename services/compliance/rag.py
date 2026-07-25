@@ -4,8 +4,8 @@ Compliance RAG — Retrieval-augmented generation for regulatory compliance.
 Retrieves relevant regulatory guidance for SAR narrative generation
 with source citations and zero-hallucination enforcement.
 """
-from typing import Any, Dict, List, Optional
 from dataclasses import dataclass, field
+from typing import Any, Dict, List
 
 from core.utils.logging import get_logger
 

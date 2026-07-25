@@ -1,7 +1,9 @@
 import math
 from typing import Dict
+
 from core.schemas.transaction import TransactionCreate
 from services.feature_engine.extractors.base import ExtractionContext
+
 
 def haversine(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     R = 6371.0

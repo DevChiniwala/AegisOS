@@ -1,5 +1,7 @@
-from core.schemas.risk import RiskExplanation
 from typing import Any
+
+from core.schemas.risk import RiskExplanation
+
 
 class ExplanationNarrator:
     def narrate(self, risk_explanation: RiskExplanation, transaction: Any) -> str:

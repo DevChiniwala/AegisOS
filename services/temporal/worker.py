@@ -13,12 +13,12 @@ from temporalio.client import Client
 from temporalio.worker import Worker
 
 from core.utils.logging import get_logger
-from services.temporal.workflows import InvestigationWorkflow, TASK_QUEUE
 from services.temporal.activities import (
-    run_triage_agents,
-    run_deep_investigation,
     run_compliance_and_decision,
+    run_deep_investigation,
+    run_triage_agents,
 )
+from services.temporal.workflows import TASK_QUEUE, InvestigationWorkflow
 
 logger = get_logger(__name__)
 

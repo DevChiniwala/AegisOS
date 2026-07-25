@@ -1,9 +1,10 @@
 """
 Stream Consumers — InMemory and Redis Stream implementations.
 """
-import json
-from typing import Protocol, AsyncIterator
 import asyncio
+import json
+from typing import AsyncIterator, Protocol
+
 from core.schemas.events import EventEnvelope
 from core.utils.logging import get_logger
 

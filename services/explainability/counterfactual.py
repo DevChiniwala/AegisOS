@@ -1,6 +1,8 @@
+from typing import Any, Dict
+
 import numpy as np
-from typing import Dict, Any
 from scipy.optimize import minimize
+
 
 class CounterfactualExplainer:
     def generate_counterfactual(self, model: Any, features: Dict[str, float], target_outcome: str = 'legitimate') -> Dict[str, Any]:

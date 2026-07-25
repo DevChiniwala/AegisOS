@@ -2,11 +2,9 @@
 Tests for Active Learning Loop.
 """
 
-import pytest
 
 from services.risk_engine.active_learning import (
     ActiveLearningLoop,
-    AnalystFeedback,
     FeedbackType,
 )
 

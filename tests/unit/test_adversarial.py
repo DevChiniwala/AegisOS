@@ -2,12 +2,10 @@
 Tests for Adversarial Feature Perturbation Detection.
 """
 
-import pytest
 
 from services.risk_engine.adversarial import (
     AdversarialDetector,
     PerturbationResult,
-    EVASION_THRESHOLDS,
 )
 
 

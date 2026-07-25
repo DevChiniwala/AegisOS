@@ -1,8 +1,9 @@
 import logging
 import sys
-import structlog
 from contextvars import ContextVar
 from typing import Any
+
+import structlog
 
 request_id_var: ContextVar[str] = ContextVar("request_id", default="")
 

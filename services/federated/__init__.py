@@ -14,9 +14,9 @@ Architecture:
 Requires: pip install aegisos[federated]
 """
 
+from services.federated.aggregator import SecureFedAvgAggregator
 from services.federated.dp_mechanism import AdaptiveDPMechanism
 from services.federated.trainer import AegisFederatedTrainer
-from services.federated.aggregator import SecureFedAvgAggregator
 
 __all__ = [
     "AdaptiveDPMechanism",

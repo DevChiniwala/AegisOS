@@ -1,9 +1,10 @@
+from typing import Any, Dict, List
+
 import joblib
-from typing import Dict, List, Any
 
 try:
-    from sklearn.ensemble import IsolationForest
     import numpy as np
+    from sklearn.ensemble import IsolationForest
 except ImportError:
     IsolationForest = None
     np = None

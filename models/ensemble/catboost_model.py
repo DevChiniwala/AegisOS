@@ -1,5 +1,4 @@
-import joblib
-from typing import Dict, List, Any
+from typing import Any, Dict, List
 
 try:
     from catboost import CatBoostClassifier

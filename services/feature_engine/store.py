@@ -1,5 +1,5 @@
-from typing import Dict, List, Optional
 from datetime import datetime, timezone
+from typing import Dict, List, Optional
 
 
 class FeatureStore:

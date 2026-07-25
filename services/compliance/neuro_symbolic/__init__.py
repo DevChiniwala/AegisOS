@@ -16,8 +16,8 @@ Requires: pip install aegisos[compliance]
 
 try:
     from services.compliance.neuro_symbolic.engine import (
-        NeuroSymbolicComplianceEngine,
         ComplianceProof,
+        NeuroSymbolicComplianceEngine,
         Violation,
         ViolationType,
     )

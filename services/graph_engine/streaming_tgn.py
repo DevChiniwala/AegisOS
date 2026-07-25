@@ -16,19 +16,19 @@ Architecture:
 - Integrates with existing GraphRAG for hybrid retrieval
 """
 
-from typing import Dict, Any, List, Optional, Set
-from dataclasses import dataclass, field
-from collections import defaultdict
-import time
 import math
+import time
+from collections import defaultdict
+from dataclasses import dataclass, field
+from typing import Any, Dict, List, Optional
 
 from core.utils.logging import get_logger
 
 logger = get_logger(__name__)
 
 try:
-    import torch
     import numpy as np
+    import torch
 
     TORCH_AVAILABLE = True
 except ImportError:

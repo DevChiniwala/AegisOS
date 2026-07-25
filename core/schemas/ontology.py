@@ -4,10 +4,10 @@ Financial Domain Ontology — Formal entity model for AegisOS.
 Defines the core entity types, relationship types, and lifecycle states
 for the fraud intelligence knowledge graph.
 """
-from enum import Enum
-from typing import Any, Dict, List, Optional
 from dataclasses import dataclass, field
 from datetime import datetime
+from enum import Enum
+from typing import Any, Dict, Optional
 
 
 class EntityType(str, Enum):

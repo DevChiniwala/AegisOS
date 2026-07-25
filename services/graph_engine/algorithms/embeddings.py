@@ -1,6 +1,8 @@
+from typing import Dict, List, Tuple
+
 import networkx as nx
 import numpy as np
-from typing import Dict, List, Tuple
+
 try:
     from node2vec import Node2Vec
 except ImportError:

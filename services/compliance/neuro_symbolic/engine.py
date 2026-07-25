@@ -11,9 +11,12 @@ generator — given transaction facts, it produces either:
 import time
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Dict, Any, List, Optional
+from typing import TYPE_CHECKING, Any, Dict, List, Optional
 
 from core.utils.logging import get_logger
+
+if TYPE_CHECKING:
+    from services.compliance.neuro_symbolic.rules import RegulatoryRule
 
 logger = get_logger(__name__)
 
@@ -76,10 +79,10 @@ class NeuroSymbolicComplianceEngine:
     def _load_default_rules(self):
         from services.compliance.neuro_symbolic.rules import (
             CTRStructuringRule,
-            VelocityLimitRule,
+            JurisdictionRiskRule,
             LayeringRule,
             SanctionsRule,
-            JurisdictionRiskRule,
+            VelocityLimitRule,
         )
 
         self._rules["ctr_structuring"] = CTRStructuringRule()

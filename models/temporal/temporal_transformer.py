@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 
+
 class TemporalTransformer(nn.Module):
     def __init__(self, input_dim: int, d_model: int = 64, nhead: int = 4, num_layers: int = 2, dropout: float = 0.1):
         super().__init__()

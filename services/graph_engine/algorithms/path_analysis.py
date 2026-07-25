@@ -1,5 +1,7 @@
+from typing import Dict, List
+
 import networkx as nx
-from typing import List, Dict
+
 
 class PathAnalyzer:
     def shortest_path(self, graph: nx.Graph, source: str, target: str) -> List[str]:

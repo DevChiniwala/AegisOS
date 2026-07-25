@@ -1,4 +1,5 @@
-from typing import Protocol, Any, List, Optional
+from typing import Any, List, Optional, Protocol
+
 from core.config.settings import DatabaseSettings
 from core.utils.logging import get_logger
 

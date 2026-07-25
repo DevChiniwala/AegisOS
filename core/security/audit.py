@@ -1,9 +1,11 @@
 from datetime import datetime
-from typing import Dict, Any, Optional
-from pydantic import Field
+from typing import Any, Dict, Optional
+
 import structlog
 from fastapi import Request
+from pydantic import Field
 from starlette.middleware.base import BaseHTTPMiddleware
+
 from core.schemas.base import BaseSchema, UUIDMixin
 
 logger = structlog.get_logger(__name__)

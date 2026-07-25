@@ -1,5 +1,6 @@
-from typing import Protocol, Dict, List, Any
 import os
+from typing import Any, Dict, List, Protocol
+
 
 class FraudModel(Protocol):
     @property
@@ -59,10 +60,10 @@ class ModelRegistry:
         model.load(path)
 
     def register_defaults(self):
-        from models.ensemble.xgboost_model import XGBoostFraudModel
-        from models.ensemble.lightgbm_model import LightGBMFraudModel
         from models.ensemble.catboost_model import CatBoostFraudModel
         from models.ensemble.isolation_forest import IsolationForestModel
+        from models.ensemble.lightgbm_model import LightGBMFraudModel
+        from models.ensemble.xgboost_model import XGBoostFraudModel
         self.register(XGBoostFraudModel())
         self.register(LightGBMFraudModel())
         self.register(CatBoostFraudModel())

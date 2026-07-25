@@ -8,7 +8,7 @@ from enum import Enum
 from typing import Dict, List, Optional, Set
 
 from core.events.event_store import get_event_store
-from core.events.models import InvestigationEvent, EventType
+from core.events.models import EventType, InvestigationEvent
 from core.utils.logging import get_logger
 
 logger = get_logger(__name__)

@@ -1,7 +1,7 @@
 import logging
+from typing import Any, Dict, List
+
 import joblib
-from typing import Dict, List, Any
-from models.base import FraudModel
 
 try:
     import xgboost as xgb

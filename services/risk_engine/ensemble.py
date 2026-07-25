@@ -1,7 +1,8 @@
 import math
 from typing import Dict, List, Tuple
-from models.base import FraudModel
+
 from core.utils.logging import get_logger
+from models.base import FraudModel
 
 logger = get_logger(__name__)
 

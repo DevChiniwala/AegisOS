@@ -3,9 +3,9 @@ from typing import Optional
 
 import httpx
 
-from packages.sdk_python.resources.transactions import TransactionsResource
-from packages.sdk_python.resources.investigations import InvestigationsResource
 from packages.sdk_python.resources.graph import GraphResource
+from packages.sdk_python.resources.investigations import InvestigationsResource
+from packages.sdk_python.resources.transactions import TransactionsResource
 
 
 class AegisClient:

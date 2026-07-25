@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+
 class SequenceEncoder(nn.Module):
     def __init__(self, input_dim: int, hidden_size: int = 64, num_layers: int = 2):
         super().__init__()

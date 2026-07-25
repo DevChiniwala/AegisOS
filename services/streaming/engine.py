@@ -2,8 +2,8 @@
 Stream Processor Engine.
 """
 import asyncio
+
 from core.schemas.events import EventEnvelope
-from core.schemas.transaction import TransactionCreate
 from core.utils.logging import get_logger
 from services.streaming.consumers import EventConsumer
 from services.streaming.producers import EventProducer

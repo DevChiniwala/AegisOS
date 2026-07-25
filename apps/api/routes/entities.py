@@ -1,8 +1,9 @@
 """
 Entity routes.
 """
-from fastapi import APIRouter, Depends
-from core.schemas.entity import UserProfile, MerchantProfile, DeviceFingerprint
+from fastapi import APIRouter
+
+from core.schemas.entity import DeviceFingerprint, MerchantProfile, UserProfile
 
 router = APIRouter()
 

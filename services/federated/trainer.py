@@ -9,8 +9,8 @@ In production, this integrates with NVIDIA FLARE's FL system.
 For development/testing, the trainer can run standalone.
 """
 
-from typing import Dict, Any, List, Optional
-from dataclasses import dataclass, field
+from dataclasses import dataclass
+from typing import Any, Dict, List, Optional
 
 from core.utils.logging import get_logger
 from services.federated.dp_mechanism import AdaptiveDPMechanism

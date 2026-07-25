@@ -13,6 +13,7 @@ def serve(
 ):
     """Start the AegisOS API server."""
     import uvicorn
+
     from apps.cli.output import console, print_banner
 
     print_banner()

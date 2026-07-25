@@ -2,8 +2,10 @@
 Money Mule scenario generator.
 """
 from typing import List
+
 from core.schemas.transaction import TransactionCreate, TransactionType
 from core.utils.helpers import utc_now
+
 
 def generate_money_mule_scenario(mule_id: str, target_account_id: str) -> List[TransactionCreate]:
     txs = []
