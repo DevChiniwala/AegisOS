@@ -1,10 +1,9 @@
 import time
-import uuid
-from typing import Dict, List
+
 import numpy as np
-from sklearn.metrics import roc_auc_score, precision_score, recall_score, f1_score
 from rich.console import Console
 from rich.table import Table
+from sklearn.metrics import f1_score, precision_score, recall_score, roc_auc_score
 
 console = Console()
 
@@ -55,7 +54,6 @@ def generate_synthetic_kaggle_data(n_samples: int = 50000, fraud_ratio: float = 
 
 def run_benchmark():
     data = generate_synthetic_kaggle_data(100000, 0.0017) # 100k samples, 0.17% fraud (typical Kaggle)
-    X = data[:, :-1]
     y_true = data[:, -1]
     
     models = [
