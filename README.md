@@ -24,6 +24,9 @@
 <p align="center">
   <img src="docs/assets/dashboard-preview.jpg" alt="AegisOS Dashboard Preview" width="100%"/>
 </p>
+<p align="center">
+  <img src="docs/assets/models-preview.jpg" alt="AegisOS Model Monitoring Preview" width="100%"/>
+</p>
 
 ---
 
