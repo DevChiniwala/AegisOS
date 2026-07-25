@@ -83,7 +83,7 @@ class EntityResolutionEngine:
 
     def find_links(self, entity_id: str) -> List[EntityLink]:
         """Find all links for an entity."""
-        return [l for l in self._links if l.source_id == entity_id or l.target_id == entity_id]
+        return [link for link in self._links if link.source_id == entity_id or link.target_id == entity_id]
 
     def link_by_device(self, device_id: str) -> List[str]:
         """Find all entities sharing a device."""
@@ -111,7 +111,7 @@ class EntityResolutionEngine:
 
     def suggest_merges(self, min_confidence: float = 0.8) -> List[EntityLink]:
         """Get high-confidence merge suggestions."""
-        return [l for l in self._links if l.confidence >= min_confidence]
+        return [link for link in self._links if link.confidence >= min_confidence]
 
     def _find_candidates(self, entity_id: str, attributes: Dict[str, Any]) -> List[Tuple[str, float]]:
         """Find candidate matches from existing entities."""

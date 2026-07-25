@@ -27,7 +27,7 @@ from core.utils.logging import get_logger
 logger = get_logger(__name__)
 
 try:
-    import numpy as np
+    pass  # import numpy as np
     import torch
 
     TORCH_AVAILABLE = True

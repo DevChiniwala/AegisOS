@@ -38,7 +38,8 @@ class FraudKnowledgeGraph:
 
     def get_related_patterns(self, pattern_name: str) -> List[FraudPattern]:
         target = self.patterns.get(pattern_name)
-        if not target: return []
+        if not target:
+            return []
         
         related = []
         for p in self.patterns.values():

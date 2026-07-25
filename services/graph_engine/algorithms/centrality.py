@@ -5,17 +5,20 @@ import networkx as nx
 
 class CentralityAnalyzer:
     def degree_centrality(self, graph: nx.Graph, entity_id: str) -> float:
-        if entity_id not in graph: return 0.0
+        if entity_id not in graph:
+            return 0.0
         dc = nx.degree_centrality(graph)
         return dc.get(entity_id, 0.0)
 
     def betweenness_centrality(self, graph: nx.Graph, entity_id: str) -> float:
-        if entity_id not in graph: return 0.0
+        if entity_id not in graph:
+            return 0.0
         bc = nx.betweenness_centrality(graph)
         return bc.get(entity_id, 0.0)
 
     def pagerank(self, graph: nx.Graph, entity_id: str) -> float:
-        if entity_id not in graph: return 0.0
+        if entity_id not in graph:
+            return 0.0
         pr = nx.pagerank(graph)
         return pr.get(entity_id, 0.0)
 

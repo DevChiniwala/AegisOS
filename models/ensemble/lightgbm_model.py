@@ -36,7 +36,8 @@ class LightGBMFraudModel:
         return self._version
         
     def predict(self, features: Dict[str, float]) -> float:
-        if self.model is None: return 0.5
+        if self.model is None:
+            return 0.5
         try:
             import numpy as np
             X = np.array([list(features.values())])
@@ -45,7 +46,8 @@ class LightGBMFraudModel:
             return 0.5
 
     def predict_batch(self, features: List[Dict[str, float]]) -> List[float]:
-        if self.model is None: return [0.5]*len(features)
+        if self.model is None:
+            return [0.5]*len(features)
         try:
             import numpy as np
             X = np.array([[f for f in feat.values()] for feat in features])

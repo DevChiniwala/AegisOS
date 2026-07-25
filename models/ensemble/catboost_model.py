@@ -27,14 +27,16 @@ class CatBoostFraudModel:
         return self._version
         
     def predict(self, features: Dict[str, float]) -> float:
-        if self.model is None: return 0.5
+        if self.model is None:
+            return 0.5
         try:
             return float(self.model.predict_proba([list(features.values())])[0][1])
         except Exception:
             return 0.5
 
     def predict_batch(self, features: List[Dict[str, float]]) -> List[float]:
-        if self.model is None: return [0.5]*len(features)
+        if self.model is None:
+            return [0.5]*len(features)
         try:
             X = [[f for f in feat.values()] for feat in features]
             return self.model.predict_proba(X)[:, 1].tolist()

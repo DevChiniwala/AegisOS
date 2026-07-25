@@ -54,10 +54,13 @@ class GeoFeatureExtractor:
             if (transaction.timestamp - t.timestamp).total_seconds() <= 86400:
                 if t.location:
                     c = getattr(t.location, 'country', '')
-                    if c: countries_24h.add(c)
+                    if c:
+                        countries_24h.add(c)
                     city = getattr(t.location, 'city', '')
-                    if city: cities_24h.add(city)
-        if tx_country: countries_24h.add(tx_country)
+                    if city:
+                        cities_24h.add(city)
+        if tx_country:
+            countries_24h.add(tx_country)
         
         features['unique_countries_24h'] = float(len(countries_24h))
         features['unique_cities_24h'] = float(len(cities_24h))

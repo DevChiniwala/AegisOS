@@ -103,6 +103,7 @@ class GraphIntelligenceEngine:
         shared_nodes = []
         for n_id in shared_ids:
             n = await self.store.get_node(n_id)
-            if n: shared_nodes.append(n)
+            if n:
+                shared_nodes.append(n)
             
         return {"shared_nodes": shared_nodes}
