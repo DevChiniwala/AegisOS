@@ -3,7 +3,7 @@ import hashlib
 import json
 import time
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
 from functools import wraps
 from typing import Any, Awaitable, Callable, List, TypeVar
 
@@ -15,7 +15,7 @@ def generate_id() -> str:
 
 def utc_now() -> datetime:
     """Get current UTC datetime."""
-    return datetime.utcnow()
+    return datetime.now(timezone.utc)
 
 def hash_value(value: str) -> str:
     """Hash a string using SHA256."""
