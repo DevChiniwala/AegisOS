@@ -81,6 +81,10 @@ causal = [
     "dowhy>=0.11",
     "econml>=0.15",
 ]
+federated = [
+    "nvflare>=2.4",
+    "opacus",
+]
 all = [
     "xgboost",
     "lightgbm",
