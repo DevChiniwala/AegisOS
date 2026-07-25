@@ -37,7 +37,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -e "."
-        pip install pytest ruff bandit networkx python-louvain pyyaml numpy
+        pip install pytest ruff bandit networkx python-louvain pyyaml numpy joblib scikit-learn
 
     - name: Linting (ruff)
       run: |
