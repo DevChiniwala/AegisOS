@@ -26,9 +26,9 @@ export const mockTopRisks: TopRisk[] = [
 ];
 
 export const mockModelPerformance: ModelPerformance[] = [
-  { model_name: "Adaptive Ensemble", accuracy: 0.994, precision: 0.89, recall: 0.84, f1: 0.86, auc: 0.97, latency_p50: 8, latency_p95: 18, latency_p99: 42 },
-  { model_name: "XGBoost", accuracy: 0.992, precision: 0.86, recall: 0.81, f1: 0.83, auc: 0.96, latency_p50: 3, latency_p95: 7, latency_p99: 15 },
-  { model_name: "LightGBM", accuracy: 0.991, precision: 0.84, recall: 0.82, f1: 0.83, auc: 0.95, latency_p50: 2, latency_p95: 5, latency_p99: 11 },
-  { model_name: "CatBoost", accuracy: 0.993, precision: 0.87, recall: 0.80, f1: 0.83, auc: 0.96, latency_p50: 4, latency_p95: 9, latency_p99: 22 },
-  { model_name: "Isolation Forest", accuracy: 0.985, precision: 0.72, recall: 0.88, f1: 0.79, auc: 0.93, latency_p50: 1, latency_p95: 3, latency_p99: 8 },
+  { model_name: "SGAE (Dynamic Ensemble)", accuracy: 0.999, precision: 0.892, recall: 0.914, f1: 0.903, auc: 0.998, latency_p50: 42, latency_p95: 48, latency_p99: 55 },
+  { model_name: "XGBoost (Deep Core)", accuracy: 0.998, precision: 0.017, recall: 0.994, f1: 0.034, auc: 0.998, latency_p50: 0.03, latency_p95: 0.05, latency_p99: 0.08 },
+  { model_name: "LightGBM (Fast Path)", accuracy: 0.996, precision: 0.019, recall: 0.988, f1: 0.038, auc: 0.996, latency_p50: 0.04, latency_p95: 0.06, latency_p99: 0.1 },
+  { model_name: "CatBoost (Categorical)", accuracy: 0.997, precision: 0.018, recall: 0.994, f1: 0.035, auc: 0.997, latency_p50: 0.03, latency_p95: 0.06, latency_p99: 0.09 },
+  { model_name: "Temporal Graph Network", accuracy: 0.988, precision: 0.812, recall: 0.880, f1: 0.845, auc: 0.965, latency_p50: 28, latency_p95: 35, latency_p99: 45 },
 ];
