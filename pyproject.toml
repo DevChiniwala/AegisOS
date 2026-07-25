@@ -71,6 +71,9 @@ telemetry = [
 mcp = [
     "mcp",
 ]
+temporal = [
+    "temporalio>=1.4.0",
+]
 all = [
     "xgboost",
     "lightgbm",
@@ -96,6 +99,7 @@ all = [
     "opentelemetry-instrumentation-fastapi",
     "opentelemetry-exporter-otlp",
     "mcp",
+    "temporalio>=1.4.0",
 ]
 
 [tool.pytest.ini_options]

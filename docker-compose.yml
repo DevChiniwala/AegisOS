@@ -249,6 +249,59 @@ services:
       - aegis-network
     restart: unless-stopped
 
+  # ─────────────────────────── Temporal.io ───────────────────────────
+  temporal-db:
+    image: postgres:16-alpine
+    container_name: aegis-temporal-db
+    environment:
+      POSTGRES_USER: temporal
+      POSTGRES_PASSWORD: temporal_secret
+      POSTGRES_DB: temporal
+    volumes:
+      - temporal-db-data:/var/lib/postgresql/data
+    networks:
+      - aegis-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U temporal"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  temporal:
+    image: temporalio/auto-setup:latest
+    container_name: aegis-temporal
+    ports:
+      - "7233:7233"
+    environment:
+      - DB=postgres12
+      - DB_PORT=5432
+      - POSTGRES_USER=temporal
+      - POSTGRES_PWD=temporal_secret
+      - POSTGRES_SEEDS=temporal-db
+      - DYNAMIC_CONFIG_FILE_PATH=config/dynamicconfig/development-sql.yaml
+    depends_on:
+      temporal-db:
+        condition: service_healthy
+    networks:
+      - aegis-network
+    restart: unless-stopped
+
+  temporal-ui:
+    image: temporalio/ui:latest
+    container_name: aegis-temporal-ui
+    ports:
+      - "8080:8080"
+    environment:
+      - TEMPORAL_ADDRESS=temporal:7233
+      - TEMPORAL_CORS_ORIGINS=http://localhost:3000
+    depends_on:
+      - temporal
+    networks:
+      - aegis-network
+    restart: unless-stopped
+
 # ─────────────────────────── Volumes ───────────────────────────
 volumes:
   postgres-data:
@@ -268,6 +321,8 @@ volumes:
   prometheus-data:
     driver: local
   grafana-data:
+    driver: local
+  temporal-db-data:
     driver: local
 
 # ─────────────────────────── Networks ───────────────────────────

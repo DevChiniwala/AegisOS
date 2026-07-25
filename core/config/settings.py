@@ -65,11 +65,19 @@ class LLMSettings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="AEGIS_LLM_", env_file=".env", extra="ignore")
 
 
+class TemporalSettings(BaseSettings):
+    host: str = "localhost:7233"
+    namespace: str = "default"
+    task_queue: str = "aegis-investigations"
+
+    model_config = SettingsConfigDict(env_prefix="AEGIS_TEMPORAL_", env_file=".env", extra="ignore")
+
+
 class FeatureFlagsSettings(BaseSettings):
     enable_graph: bool = True
     enable_agents: bool = True
     enable_streaming: bool = False
-    
+
     model_config = SettingsConfigDict(env_prefix="AEGIS_FEATURE_", env_file=".env", extra="ignore")
 
 
@@ -82,8 +90,9 @@ class AegisSettings(BaseSettings):
     minio: MinioSettings = MinioSettings()
     security: SecuritySettings = SecuritySettings()
     llm: LLMSettings = LLMSettings()
+    temporal: TemporalSettings = TemporalSettings()
     features: FeatureFlagsSettings = FeatureFlagsSettings()
-    
+
     model_config = SettingsConfigDict(env_prefix="AEGIS_", env_file=".env", extra="ignore")
 
 
